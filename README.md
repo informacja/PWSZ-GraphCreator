@@ -2,7 +2,7 @@
 ### Schemat pliku wejściowego:
 Pierwsza lina zawiera liczbę <b>wierzchołków</b> i <b>krawędzi</b><br>
 kolejnie linie zawierają informacje o kawędziach w schemacie 3 wartości które oznaczają:<br>
-wierzchołek <b>początkowy</b>, <b>końcowy</b> oraz <b>waga</b> tego połączenia krawędzi                                                                             
+wierzchołek <b>początkowy</b>, <b>końcowy</b> oraz <b>wagę</b> tego połączenia krawędzi                                                                             
 <img src="/WindowsFormsApplication1/in.png"> </img>
 
 ## Istotne pliki
