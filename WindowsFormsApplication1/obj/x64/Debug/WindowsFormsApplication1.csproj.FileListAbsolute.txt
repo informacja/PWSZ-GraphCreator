@@ -1,0 +1,9 @@
+c:\users\puler\documents\visual studio 2015\Projects\WindowsFormsApplication1\WindowsFormsApplication1\bin\x64\Debug\WindowsFormsApplication1.exe.config
+c:\users\puler\documents\visual studio 2015\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\x64\Debug\WindowsFormsApplication1.Form1.resources
+c:\users\puler\documents\visual studio 2015\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\x64\Debug\WindowsFormsApplication1.Properties.Resources.resources
+c:\users\puler\documents\visual studio 2015\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\x64\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+c:\users\puler\documents\visual studio 2015\Projects\WindowsFormsApplication1\WindowsFormsApplication1\bin\x64\Debug\WindowsFormsApplication1.exe
+c:\users\puler\documents\visual studio 2015\Projects\WindowsFormsApplication1\WindowsFormsApplication1\bin\x64\Debug\WindowsFormsApplication1.pdb
+c:\users\puler\documents\visual studio 2015\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\x64\Debug\WindowsFormsApplication1.exe
+c:\users\puler\documents\visual studio 2015\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\x64\Debug\WindowsFormsApplication1.pdb
+c:\users\puler\documents\visual studio 2015\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\x64\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
