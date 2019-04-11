@@ -1,0 +1,11 @@
+c:\users\puler\documents\visual studio 2015\Projects\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+P:\C#\PWSZ-GraphCreator\Assets\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+P:\C#\PWSZ-GraphCreator\Assets\Scripts\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+P:\C#\PWSZ-GraphCreator\Assets\Scripts\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+P:\C#\PWSZ-GraphCreator\Assets\Scripts\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+P:\C#\PWSZ-GraphCreator\Assets\Scripts\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
+P:\C#\PWSZ-GraphCreator\Assets\Scripts\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
+P:\C#\PWSZ-GraphCreator\Assets\Scripts\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+P:\C#\PWSZ-GraphCreator\Assets\Scripts\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+P:\C#\PWSZ-GraphCreator\Assets\Scripts\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+P:\C#\PWSZ-GraphCreator\Assets\Scripts\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
