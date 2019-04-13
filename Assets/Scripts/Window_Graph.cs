@@ -1,4 +1,4 @@
-﻿
+
 using UnityEngine;
 using UnityEngine.UI;
 using CodeMonkey.Utils; //imported utils from https://unitycodemonkey.com
@@ -22,13 +22,15 @@ public class Window_Graph : MonoBehaviour {
 
 
         // Testing zone :D
-        float[][]ArrayOfPoint = new float[][]{ new float[]{0,0}, new float[] { 10,10}, new float[] { 15,15}, new float[]{ 20, 20 } };
-
-        GameObject last = DrawPoint(Scale(10, 50));
+		// 
+        float[][]ArrayOfPoint = new float[][]{ new float[] { 100,0}, new float[]{ 100, 100 },new float[]{0,0}, new float[] {0,100}};
+		
+	
+		GameObject last = DrawPoint(Scale(10, 50));
         GameObject now;
         foreach (float[] point in ArrayOfPoint)
         {
-            now = DrawPoint(Scale(point[0], point[1]));
+            now = DrawPoint( Scale(point[0], point[1]));
             CreatePointConnection(last.GetComponent<RectTransform>().anchoredPosition, now.GetComponent<RectTransform>().anchoredPosition);
             last = now;
         }
@@ -36,7 +38,7 @@ public class Window_Graph : MonoBehaviour {
 
     private Vector2 Scale(float x, float y) //Rensponsive points
     {
-        return new Vector2(x * ContainerWidth / 100, y * ContainerHeight / 100);
+        return new Vector2(x * ContainerWidth / 120, y * ContainerHeight / 120);
     }
 
     private GameObject DrawPoint(Vector2 anchoredPosition) {
@@ -64,9 +66,13 @@ public class Window_Graph : MonoBehaviour {
 
         //position/thickness/anchor of point
         Vector2 dir = (dotPositionB - dotPositionA).normalized;
+		
         float distance = Vector2.Distance(dotPositionA, dotPositionB);
+		
         RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = dotPositionA + dir * distance * .9f;
+		
+        rectTransform.anchoredPosition = dotPositionA + dir * distance * .5f;
+		
         rectTransform.sizeDelta = new Vector2(distance, 3f);
         rectTransform.anchorMin = new Vector2(0, 0);
         rectTransform.anchorMax = new Vector2(0, 0);
