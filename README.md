@@ -3,7 +3,9 @@
 Pierwsza lina zawiera liczbę <b>wierzchołków</b> i <b>krawędzi</b><br>
 kolejnie linie zawierają informacje o kawędziach w schemacie 3 wartości które oznaczają:<br>
 wierzchołek <b>początkowy</b>, <b>końcowy</b> oraz <b>wagę</b> tego połączenia krawędzi                                                                             
-<img src="/img/in.png"> </img>
+<img style="display: inlinie;" src="/img/in.png"> </img>
+<img src="/img/graph.png"> </img>
+<img src="/img/app.png"> </img>
 
 ## Istotne pliki
 <i> Graph.cs</i> - klasa szukająca najkrótszego obwodu metodą Bellmana-Forda <br>
