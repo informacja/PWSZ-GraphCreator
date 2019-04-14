@@ -13,10 +13,8 @@ Jako tekst widzimy wczytane plik, po pustej lini jest odległośc do każdego ko
 W pliku Form1.cs metoda <i> private void button1_Click(object sender, EventArgs e)</i> - odpowiada za wczytywanie danych z pliku <br>
 Pozostałe pliki są nieistotne
 
-# ToDo Sobota
+# Done
 _wybrać nazwę_
-<img src="img/mc.png"> </img>
-
 <img src="img/1.png"> </img>
 
 <img src="img/2.png"> </img>
