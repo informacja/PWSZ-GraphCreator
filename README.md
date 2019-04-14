@@ -7,6 +7,8 @@ wierzchołek <b>początkowy</b>, <b>końcowy</b> oraz <b>wagę</b> krawędzi
 <img src="/img/graph.png"> </img><br>
 Jako tekst widzimy wczytane plik, po pustej lini jest odległośc do każdego kolejnego wierzchołka.<br>
 <img src="/img/app.png"> </img>
+<br>
+https://csacademy.com/app/graph_editor/
 
 ## Istotne pliki
 <i> Graph.cs</i> - klasa szukająca najkrótszego obwodu metodą Bellmana-Forda <br>
