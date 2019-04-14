@@ -5,6 +5,7 @@ Każdy wiersz zawierają informacje o krawędzi:<br>
 wierzchołek <b>początkowy</b>, <b>końcowy</b> oraz <b>wagę</b> krawędzi                                                                             
 <img style="display: inlinie;" src="/img/in.png"> </img>
 <img src="/img/graph.png"> </img>
+Jako tekst widzimy wczytane plik, po pustej lini jest odległośc do każdego kolejnego wierzchołka.
 <img src="/img/app.png"> </img>
 
 ## Istotne pliki
