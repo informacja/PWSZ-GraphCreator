@@ -1,4 +1,5 @@
 # PWSZ-GraphCreator
+<<<<<<< HEAD
 ### Schemat pliku wejściowego:
 Pierwsza lina zawiera liczbę <b>wierzchołków</b> i <b>krawędzi</b><br>
 kolejnie linie zawierają informacje o kawędziach w schemacie 3 wartości które oznaczają:<br>
@@ -19,3 +20,13 @@ _wybrać nazwę_
 <img src="img/2.png"> </img>
 
 <img src="img/3.png"> </img>
+=======
+PWSZ - Graph Creator
+
+#How to use
+-------
+- Use left mause button to create new node
+- Click node and move mause pointer to next node to link them
+- Use key "R" to change direction of link
+- Use key "Delete" to remove selected node or link
+>>>>>>> refs/remotes/czakiss/JavaScript-Version
