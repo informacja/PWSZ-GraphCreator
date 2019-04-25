@@ -1,11 +1,7 @@
-"use strict";
-// Object.defineProperty(exports, "__esModule", { value: true });
-// var trigger = "2", regexp = new RegExp('^[1-9]\d{0,2}$'), test = regexp.test(trigger);
-// console.log(test + "");
-let foo = () => null;
 var ta = document.getElementById('textarea_in');
-console.log("Jo" + ta.innerText);
-console.log("ddd");
+var OriginalString = ta.toString();
+var StrippedString = OriginalString.replace(/(<([^>]+)>)/ig, "");
+console.log(StrippedString);
 var jsgraphs = require('js-graph-algorithms');
 var g = new jsgraphs.WeightedDiGraph(8);
 g.addEdge(new jsgraphs.Edge(0, 7, 0.16));
@@ -28,3 +24,4 @@ g.node(2).label = 'Hello';
 g.edge(4, 5).label = 'World';
 console.log(g.V);
 console.log(g.adj(0));
+//# sourceMappingURL=main.js.map

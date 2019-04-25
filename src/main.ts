@@ -1,4 +1,4 @@
-import * as fs from "fs";
+// import * as fs from "fs";
 
 // fs.readFileSync('main.ts', 'utf8');
 // var trigger = "2",
@@ -23,12 +23,14 @@ import * as fs from "fs";
 // var unit = (<HTMLInputElement>document.getElementById("myUnit")).value;
 // myObject: MyObject = new MyObject(value, unit);
 // declare var window: Window;
-let foo = () => null;
+// let foo = () => null;
 declare var document: Document;
 var ta = document.getElementById('textarea_in');
-console.log("Jo"+ta.innerHTML);
+var OriginalString:String = ta.toString();
+var StrippedString = OriginalString.replace(/(<([^>]+)>)/ig,"");
+console.log(StrippedString);
 // window.onload = () => {
-		console.log("dddsd");
+// 		console.log("dddsd");
     // HTMLElement el = document.getElementById('content');
     // var greeter = new Greeter(el);
     // greeter.start();
