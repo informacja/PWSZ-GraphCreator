@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"lib": [ "ES6", "ES2018.RegExp", "DOM"],
+		"allowJs":false,
+		"module": "commonjs",
+		"target":"ES6",
+	"sourceMap": false, 
+    "removeComments": true,
+	},
+	"include": [
+		"src/**/*",
+		"typings/**/*"
+	]
+}
