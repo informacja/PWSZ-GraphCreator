@@ -19,7 +19,8 @@ namespace WindowsFormsApplication1
     {
         public Form1()
         {
-            InitializeComponent();       
+            InitializeComponent();
+            this.button1_Click(this, null);                     // naciśnij przycisk przy uruchamianiu
         }
 
         private void Form1_Load(object sender, EventArgs e)

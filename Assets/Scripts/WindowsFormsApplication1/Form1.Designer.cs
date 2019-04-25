@@ -50,7 +50,7 @@
             this.pathEdit.Name = "pathEdit";
             this.pathEdit.Size = new System.Drawing.Size(100, 20);
             this.pathEdit.TabIndex = 1;
-            this.pathEdit.Text = "in.txt";
+            this.pathEdit.Text = "gr.txt";
             // 
             // richTextBox1
             // 

@@ -42,7 +42,7 @@ class Graph
         public int[] BellmanFord(Graph graph, int src)
     {
         int V = graph.V, E = graph.E;
-        int[] dist = new int[V];
+        int[] dist = new int[V];    // distans
 
         // Step 1: Initialize distances from src to all other 
         // vertices as INFINITE 
