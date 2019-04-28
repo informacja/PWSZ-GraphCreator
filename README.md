@@ -1,6 +1,6 @@
 # <a href="https://informacja.github.io/PWSZ-GraphCreator/">PWSZ-GraphCreator</a>
-
-https://pythex.org/?regex=(%5Cd%2B%5Cs%2B%5Cd%2B%5Cs%2B(%3F%3A(%3F%3A%5Cd%2B%5C.%5Cd%2B)%7C%5Cd%2B))(%3F%3A%5C.%5B%5CS%5Cd%5D%2B)*&test_string=015%20%2031%20333.33.4error4%0A4%2046%204%205%204%0A4%20%20034%2035%0A4444%20%20%0A5%204%205.5%201%20(%3F<!%5C.)%5Cd%2B%20(%3F<!%20znak)%20oznacza%2C%20wcześniej%20"<"%20nie%20jest%20"!"%20znak&ignorecase=0&multiline=0&dotall=0&verbose=1
+<a href="
+https://pythex.org/?regex=(%5Cd%2B%5Cs%2B%5Cd%2B%5Cs%2B(%3F%3A(%3F%3A%5Cd%2B%5C.%5Cd%2B)%7C%5Cd%2B))(%3F%3A%5C.%5B%5CS%5Cd%5D%2B)*&test_string=015%20%2031%20333.33.4error4%0A4%2046%204%205%204%0A4%20%20034%2035%0A4444%20%20%0A5%204%205.5%201%20(%3F<!%5C.)%5Cd%2B%20(%3F<!%20znak)%20oznacza%2C%20wcześniej%20"<"%20nie%20jest%20"!"%20znak&ignorecase=0&multiline=0&dotall=0&verbose=1 "> reg</a>
 ### Schemat pliku wejściowego:
 Plik wejściowy zawiera informacje o połączeniach program sam ustala liczbę wierzchołków i krawędzi.<br>
 Każdy wiersz zawierają informacje o krawędzi:<br>
