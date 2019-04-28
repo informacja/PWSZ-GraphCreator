@@ -1,7 +1,6 @@
 # <a href="https://informacja.github.io/PWSZ-GraphCreator/">PWSZ-GraphCreator</a>
 
-<a href="https://l.messenger.com/l.php?u=https%3A%2F%2Fpythex.org%2F%3Fregex%3D(%255Cd%252B%255Cs%252B%255Cd%252B%255Cs%252B(%253F%253A(%253F%253A%255Cd%252B%255C.%255Cd%252B)%257C%255Cd%252B))(%253F%253A%255C.[%255CS%255Cd]%252B)*%26test_string%3D015%2520%252031%2520333.33.4error4%250A4%252046%25204%25205%25204%250A4%2520%2520034%252035%250A4444%2520%2520%250A5%25204%25205.5%25201%26ignorecase%3D0%26multiline%3D0%26dotall%3D0%26verbose%3D1&h=AT2pACHo1esgbPofN-kACLkB6Vok6jLe6mbi_-x5gWY1H5qGCzLEmwxAmKlqY3m43u1V789Y22wkaA64Odx4r07QBisTFLnSJz_UNicvCrWGMY5oD9w1lR04IuDbvU2kSU-zLM9j-tJYewr5W9l-_Q"
-> regex </a>
+https://pythex.org/?regex=(%5Cd%2B%5Cs%2B%5Cd%2B%5Cs%2B(%3F%3A(%3F%3A%5Cd%2B%5C.%5Cd%2B)%7C%5Cd%2B))(%3F%3A%5C.%5B%5CS%5Cd%5D%2B)*&test_string=015%20%2031%20333.33.4error4%0A4%2046%204%205%204%0A4%20%20034%2035%0A4444%20%20%0A5%204%205.5%201%20(%3F<!%5C.)%5Cd%2B%20(%3F<!%20znak)%20oznacza%2C%20wcześniej%20"<"%20nie%20jest%20"!"%20znak&ignorecase=0&multiline=0&dotall=0&verbose=1
 ### Schemat pliku wejściowego:
 Plik wejściowy zawiera informacje o połączeniach program sam ustala liczbę wierzchołków i krawędzi.<br>
 Każdy wiersz zawierają informacje o krawędzi:<br>
