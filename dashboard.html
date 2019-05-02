@@ -33,7 +33,7 @@ position:absolute;
 
 
   <link rel="stylesheet" href="css/app.css">
-  <link rel="stylesheet" href="css/main.css">
+<!--  <link rel="stylesheet" href="css/main.css">-->
   <link rel="stylesheet" href="lib/boostrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="lib/fontawensome/css/all.css">
 
@@ -73,9 +73,9 @@ position:absolute;
           <ul class="navbar-nav nav-flex-icons">
 
             <li class="nav-item">
-              <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="nav-link border border-light rounded waves-effect"
+              <a href="https://github.com/informacja/PWSZ-GraphCreator" class="nav-link border border-light rounded waves-effect"
                 target="_blank">
-                <i class="fab fa-github mr-2"></i>MDB GitHub
+                <i class="fab fa-github mr-2"></i>Graph editor
               </a>
             </li>
           </ul>
@@ -93,19 +93,9 @@ position:absolute;
         <img src="https://mdbootstrap.com/img/logo/mdb-email.png" class="img-fluid" alt="">
       </a>
 
-      <div class="list-group list-group-flush">
-        <a href="#" class="list-group-item active waves-effect">
-          <i class="fas fa-chart-pie mr-3"></i>Dashboard
-        </a>
-        <a href="#" class="list-group-item list-group-item-action waves-effect">
-          <i class="fas fa-user mr-3"></i>Profile</a>
-        <a href="#" class="list-group-item list-group-item-action waves-effect">
-          <i class="fas fa-table mr-3"></i>Tables</a>
-
-      </div>
 
       <div class="form-group shadow-textarea">
-        <label for="textarea_in">Dane wejściowe</label>
+        <label for="textarea_in" class="list-group-item list-group-item-action waves-effect">Dane wejściowe</label>
         <textarea class="form-control z-depth-1" id="textarea_in" rows="12"
                   placeholder="Początek, koniec, waga ...">
 8 10
@@ -129,41 +119,22 @@ position:absolute;
   <!--Main Navigation-->
 
   <!--Main layout-->
-  <main class="pt-5 mx-lg-5">
-    <div class="container-fluid mt-5">
+  <main class="pt-5 mx-lg-5">      <!-- Heading -->
+    <script src="src/jsgraphs.js"></script>
+    <script src="src/main.js"> // regex, bellman-ford </script>
+    <script src="src/d3.v5.min.js"></script>
 
-      <!-- Heading -->
-      <div class="card mb-4 wow fadeIn">
+    <script src="src/app.js"></script>
 
-        <!--Card content-->
-        <div class="card-body d-sm-flex justify-content-between">
+<!--    <div class="container-fluid mt-5">-->
 
-          <h4 class="mb-2 mb-sm-0 pt-1">
-            <a href="https://mdbootstrap.com/docs/jquery/" target="_blank">Home Page</a>
-            <span>/</span>
-            <span>Dashboard</span>
-          </h4>
 
-          <form class="d-flex justify-content-center">
-            <!-- Default input -->
-            <input type="search" placeholder="Type your query" aria-label="Search" class="form-control">
-            <button class="btn btn-primary btn-sm my-0 p" type="submit">
-              <i class="fas fa-search"></i>
-            </button>
-
-          </form>
-
-        </div>
-
-      </div>
-      <!-- Heading -->
-
-      <div id="app"  class="row justify-content-center">
-        <div id="app-main" class="col-md-9"></div>
-        <div id="app-panel" class="col-md-3">
+      <div id="app"  class="row justify-content-center d-inline-block">
+        <div id="app-main" class="col-md-9 "></div>
+        <div id="app-panel" class="col-md-3 d-inline">
           <div class="container">
             <div class="row">
-              <button type="button" class="btn btn-primary btn-lg">Tryb Usuwania</button>
+              <button type="button" class="btn btn-primary btn-lg ">Tryb Usuwania</button>
               <button type="button" class="btn btn-primary btn-lg">Tryb Przenoszenia</button>
               <button type="button" class="btn btn-primary btn-lg">Tryb Edytowania</button>
               <button type="button" class="btn btn-primary btn-lg">Tryb Dodawania</button>
@@ -175,87 +146,14 @@ position:absolute;
       <div id="test"></div>
       test
       <!--Grid row-->
-      <div class="row wow fadeIn">
 
         <!--Grid column-->
-        <div class="col-md-9 mb-4">
 
-          <!--Card-->
-          <div class="card">
-
-            <!--Card content-->
-            <div class="card-body">
-
-              <canvas id="myChart"></canvas>
-
-            </div>
-
-          </div>
-          <!--/.Card-->
-
-        </div>
         <!--Grid column-->
 
         <!--Grid column-->
-        <div class="col-md-3 mb-4">
 
-          <!--Card-->
-          <div class="card mb-4">
-
-            <!-- Card header -->
-            <div class="card-header text-center">
-              Pie chart
-            </div>
-
-            <!--Card content-->
-            <div class="card-body">
-
-              <canvas id="pieChart"></canvas>
-
-            </div>
-
-          </div>
-          <!--/.Card-->
-
-          <!--Card-->
-          <div class="card mb-4">
-
-            <!--Card content-->
-            <div class="card-body">
-
-              <!-- List group links -->
-              <div class="list-group list-group-flush">
-                <a class="list-group-item list-group-item-action waves-effect">Sales
-                  <span class="badge badge-success badge-pill pull-right">22%
-                    <i class="fas fa-arrow-up ml-1"></i>
-                  </span>
-                </a>
-                <a class="list-group-item list-group-item-action waves-effect">Traffic
-                  <span class="badge badge-danger badge-pill pull-right">5%
-                    <i class="fas fa-arrow-down ml-1"></i>
-                  </span>
-                </a>
-                <a class="list-group-item list-group-item-action waves-effect">Orders
-                  <span class="badge badge-primary badge-pill pull-right">14</span>
-                </a>
-                <a class="list-group-item list-group-item-action waves-effect">Issues
-                  <span class="badge badge-primary badge-pill pull-right">123</span>
-                </a>
-                <a class="list-group-item list-group-item-action waves-effect">Messages
-                  <span class="badge badge-primary badge-pill pull-right">8</span>
-                </a>
-              </div>
-              <!-- List group links -->
-
-            </div>
-
-          </div>
-          <!--/.Card-->
-
-        </div>
-        <!--Grid column-->
-
-      </div>
+<!--      </div>-->
       <!--Grid row-->
 
 
@@ -403,13 +301,8 @@ position:absolute;
         legend: false
       }
     });
-
-    <script src="src/jsgraphs.js"></script>
-  <script src="src/main.js"> // regex, bellman-ford </script>
-  <script src="src/d3.v5.min.js"></script>
-  <script src="src/app.js"></script>
-
   </script>
+
 </body>
 
 </html>
