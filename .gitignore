@@ -219,3 +219,5 @@ pip-log.txt
 img/app.png
 .idea/compiler.xml
 .idea/workspace.xml
+
+.idea/*
