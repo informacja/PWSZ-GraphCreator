@@ -1,0 +1,26 @@
+{
+	"compileOnSave": true,
+	"compilerOptions": {
+		"lib": [ "ES6", "ES2018.RegExp", "DOM"],
+		"allowJs":false,
+//		"module": "commonjs",
+		"target":"ES6",
+		"outFile": "src/main.js",
+		"noImplicitAny" : true,
+//		"declarationDir" : "src/",
+	"sourceMap": true,
+    "removeComments": true
+	},
+	"files": [
+		"src/main.ts"
+	],
+
+	"include": [
+		"src/**/*",
+		"typings/**/*"
+	],
+	"exclude": [
+		"node_modules",
+		"**/*.spec.ts"
+	]
+}

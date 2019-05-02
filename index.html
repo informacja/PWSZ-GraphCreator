@@ -1,0 +1,63 @@
+<html>
+  <head>
+   <title>Directed Graph Editor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8"/>
+    <meta name="theme-color" content="#323232">
+    <meta name="Description" content="">
+    <meta name="Keywords" content="">
+    <meta name="author" content="">
+     
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="lib/boostrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/fontawensome/css/all.css">
+
+    <script src="lib/jquery-3.3.1.min.js"></script>
+    <script src="lib/boostrap/js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+    
+	<div class="form-group shadow-textarea">
+		<label for="textarea_in">Dane wejściowe</label>
+		<textarea class="form-control z-depth-1" id="textarea_in" rows="12"
+			placeholder="Początek, koniec, waga ...">
+8 10
+0 1 10
+0 2 10
+0 5 2
+1 4 5
+2 1 -9
+2 3 -8
+2 6 3
+4 2 4
+4 6 -4
+5 6 1
+	</textarea>
+	</div>
+	
+      <div id="app"  class="row justify-content-center">
+          <div id="app-main" class="col-md-9"></div>
+          <div id="app-panel" class="col-md-3">
+            <div class="container">
+              <div class="row">
+                  <button type="button" class="btn btn-primary btn-lg">Tryb Usuwania</button>
+                  <button type="button" class="btn btn-primary btn-lg">Tryb Przenoszenia</button>
+                  <button type="button" class="btn btn-primary btn-lg">Tryb Edytowania</button>
+                  <button type="button" class="btn btn-primary btn-lg">Tryb Dodawania</button>
+                  <button type="button" class="btn btn-primary btn-lg">Tryb Pusty</button>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div id="test"></div>
+test
+  </body>
+
+  <script src="src/jsgraphs.js"></script>
+  <script src="src/main.js"> // regex, bellman-ford </script>
+  <script src="src/d3.v5.min.js"></script>
+  <script src="src/app.js"></script>
+
+</html>
