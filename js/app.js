@@ -1,13 +1,34 @@
+const width = document.getElementById('app-main').clientWidth;
+const height = document.getElementById('app-main').clientHeight;
+
 // set up SVG for D3
-const width = 960;
-const height = 500;
 const colors = d3.scaleOrdinal(d3.schemeCategory10);
 
-const svg = d3.select('body')
+const svg = d3.select("#app-main")
   .append('svg')
   .on('contextmenu', () => { d3.event.preventDefault(); })
   .attr('width', width)
   .attr('height', height);
+
+// init D3 force layout
+const force = d3.forceSimulation()
+  .force('link', d3.forceLink().id((d) => d.id).distance(150))
+  .force('charge', d3.forceManyBody().strength(-500))
+  .force('x', d3.forceX(width / 2))
+  .force('y', d3.forceY(height / 2))
+  .on('tick', tick);
+
+//Responsive module
+$( window ).resize(function() {
+  const width = document.getElementById('app-main').clientWidth;
+  const height = document.getElementById('app-main').clientHeight;
+  svg
+  .attr('width', width)
+  .attr('height', height);
+  force
+  .force('x', d3.forceX(width / 2))
+  .force('y', d3.forceY(height / 2))
+});
 
 // set up initial nodes and links
 //  - nodes are known by 'id', not by index in array.
@@ -28,18 +49,9 @@ const links = [
   */
 ];
 
-// init D3 force layout
-// odleglosci punktow
-const force = d3.forceSimulation()
-  .force('link', d3.forceLink().id((d) => d.id).distance(150))
-  .force('charge', d3.forceManyBody().strength(-500))
-  .force('x', d3.forceX(width / 2))
-  .force('y', d3.forceY(height / 2))
-  .on('tick', tick);
-
 // init D3 drag support
 const drag = d3.drag()
-  // Mac Firefox doesn't distinguish between left/right click when Ctrl is held...
+  // Mac Firefox doesn't distinguish between left/right click when Ctrl is held... 
   .filter(() => d3.event.button === 0  || d3.event.button === 2)
   .on('start', (d) => {
     if (!d3.event.active) force.alphaTarget(0.3).restart();
@@ -58,7 +70,6 @@ const drag = d3.drag()
     d.fy = null;
   });
 
-// polaczenia
 // define arrow markers for graph links
 svg.append('svg:defs').append('svg:marker')
     .attr('id', 'end-arrow')
@@ -113,15 +124,15 @@ function tick() {
     const dist = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
     const normX = deltaX / dist;
     const normY = deltaY / dist;
-    const sourcePadding = d.left ? 17 : 12;
-    const targetPadding = d.right ? 17 : 12;
+    const sourcePadding = d.left ? 17 : 3;
+    const targetPadding = d.right ? 17 : 3;
     const sourceX = d.source.x + (sourcePadding * normX);
     const sourceY = d.source.y + (sourcePadding * normY);
     const targetX = d.target.x - (targetPadding * normX);
     const targetY = d.target.y - (targetPadding * normY);
-
+    
     return `M${sourceX},${sourceY}L${targetX},${targetY}`;
-
+    
   });
 
   circle.attr('transform', (d) => `translate(${d.x},${d.y})`);
@@ -141,13 +152,13 @@ function restart() {
   path.exit().remove();
 
   // add new links
-  path = path.enter().append('svg:path')
+  path = path.enter()
+    .append('svg:path')
     .attr('class', 'link')
     .classed('selected', (d) => d === selectedLink)
     .style('marker-start', (d) => d.left ? 'url(#start-arrow)' : '')
     .style('marker-end', (d) => d.right ? 'url(#end-arrow)' : '')
     .on('mousedown', (d) => {
-
       if (d3.event.ctrlKey) return;
       // select link
       mousedownLink = d;
@@ -231,17 +242,17 @@ function restart() {
 
 
       const oldLink = links.filter(p => p.source.id == source.id && p.target.id == target.id)[0];
-
+      
       if(oldLink)
         links.splice(oldLink.index, 1);
-
+      
       const link = links.filter((l) => l.source === source && l.target === target)[0];
       if (link) {
         link[isRight ? 'right' : 'left'] = true;
       } else {
         links.push({ source, target, left: !isRight, right: isRight });
       }
-
+      
       // select new link
       selectedLink = link;
       selectedNode = null;
@@ -250,7 +261,7 @@ function restart() {
 
   // show node IDs
   g.append('svg:text')
-    .attr('x', 0)
+    .attr('x', 1)
     .attr('y', 4)
     .attr('class', 'id')
     .text((d) => d.id);
@@ -312,7 +323,7 @@ function spliceLinksForNode(node) {
 let lastKeyDown = -1;
 
 function keydown() {
-  // d3.event.preventDefault(); // Zakomentowałem bo nie dało się wprowadzać danych Piotr Wawryka PS: to jedyna modyfikacja i kilka lini niżej
+  d3.event.preventDefault();
 
   if (lastKeyDown !== -1) return;
   lastKeyDown = d3.event.keyCode;
@@ -324,7 +335,7 @@ function keydown() {
     return;
   }
 
-  // if (!selectedNode && !selectedLink) return; /// potrzebne do pisania
+  if (!selectedNode && !selectedLink) return;
 
   switch (d3.event.keyCode) {
     case 8: // backspace
@@ -345,7 +356,7 @@ function keydown() {
         if(selectedLink.left == false && selectedLink.right == true){
           selectedLink.left = true;
           selectedLink.right = false;
-
+          
         }else{
           selectedLink.left = false;
           selectedLink.right = true;

@@ -8,11 +8,6 @@ https://github.com/mdbootstrap/Admin-Dashboard-Template-Bootstrap.git
 # Zmiany w ścieżkach
 lib -> js
 
-## Pliki projektu
-
-src/main.js
-
-
 #How to use
 -------
 - Use left mause button to create new node
