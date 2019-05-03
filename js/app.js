@@ -35,18 +35,14 @@ $( window ).resize(function() {
 //  - reflexive edges are indicated on the node (as a bold black circle).
 //  - links are always source < target; edge directions are set by 'left' and 'right'.
 const nodes = [
-  /*
   { id: 0, reflexive: false },
   { id: 1, reflexive: true },
   { id: 2, reflexive: false }
-  */
 ];
-let lastNodeId = -1
+let lastNodeId = 2;
 const links = [
-  /*
   { source: nodes[0], target: nodes[1], left: false, right: true },
   { source: nodes[1], target: nodes[2], left: false, right: true }
-  */
 ];
 
 // init D3 drag support
@@ -323,7 +319,7 @@ function spliceLinksForNode(node) {
 let lastKeyDown = -1;
 
 function keydown() {
-  d3.event.preventDefault();
+  // d3.event.preventDefault(); // prevent keyboard input; commented by Piotr Wawryka
 
   if (lastKeyDown !== -1) return;
   lastKeyDown = d3.event.keyCode;
@@ -335,7 +331,7 @@ function keydown() {
     return;
   }
 
-  if (!selectedNode && !selectedLink) return;
+  // if (!selectedNode && !selectedLink) return; // prevent keyboard input
 
   switch (d3.event.keyCode) {
     case 8: // backspace
