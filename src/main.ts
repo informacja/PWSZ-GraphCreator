@@ -31,6 +31,7 @@ var toType = function(obj:Object) {
 declare var document: Document;
 var ta = document.getElementById('textarea_in');
 let al = document.getElementById('alert_area');
+let array_of = document.getElementById('array_of');
 var OriginalString:string = ta.innerHTML;
 
 let regex = new RegExp(/(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*/mig);
@@ -40,6 +41,7 @@ var t = regex[Symbol.match](OriginalString);
 
 // al.innerText = typeof (c);
 // var StrippedString = OriginalString.test(/(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*/,);
+array_of.innerText = t.length;
 al.innerHTML = t.toString();
 console.log(OriginalString);
 console.log(toType(t));
