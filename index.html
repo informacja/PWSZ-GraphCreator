@@ -1,28 +1,85 @@
-<html>
-  <head>
-   <title>Directed Graph Editor</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8"/>
-    <meta name="theme-color" content="#323232">
-    <meta name="Description" content="">
-    <meta name="Keywords" content="">
-    <meta name="author" content="">
-     
-    <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="lib/boostrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="lib/fontawensome/css/all.css">
+<!DOCTYPE html>
+<html lang="en">
 
-    <script src="lib/jquery-3.3.1.min.js"></script>
-    <script src="lib/boostrap/js/bootstrap.min.js"></script>
-  </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Directed Graph Editor</title>
+  <!-- Font Awesome | Icon pack -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.min.css" rel="stylesheet">
 
-  <body>
-    
-	<div class="form-group shadow-textarea">
-		<label for="textarea_in">Dane wejściowe</label>
-		<textarea class="form-control z-depth-1" id="textarea_in" rows="12"
-			placeholder="Początek, koniec, waga ...">
+  <link rel="stylesheet" href="css/app.css">
+<!--  <link rel="stylesheet" href="css/main.css">-->
+<!--  <link rel="stylesheet" href="lib/boostrap/css/bootstrap.min.css">-->
+<!--  <link rel="stylesheet" href="lib/fontawensome/css/all.css">-->
+
+<!--  <script src="js/jquery-3.3.1.min.js"></script>-->
+<!--  <script src="lib/boostrap/js/bootstrap.min.js"></script>-->
+</head>
+
+<body class="grey lighten-3">
+
+  <!--Main Navigation-->
+  <header>
+
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+      <div class="container-fluid">
+
+
+        <!-- Collapse -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+          <!-- Left -->
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link waves-effect" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+          </ul>
+
+          <!-- Right -->
+          <ul class="navbar-nav nav-flex-icons">
+
+            <li class="nav-item">
+              <a href="https://github.com/informacja/PWSZ-GraphCreator" class="nav-link border border-light rounded waves-effect"
+                target="_blank">
+                <i class="fab fa-github mr-2"></i>Graph editor
+              </a>
+            </li>
+          </ul>
+
+        </div>
+
+      </div>
+    </nav>
+    <!-- Navbar -->
+
+    <!-- Sidebar -->
+    <div class="sidebar-fixed position-fixed">
+
+      <a class="logo-wrapper waves-effect">
+        <img src="img/zi.jpg" class="img-fluid mh-100" alt="">
+      </a>
+
+      <div class="form-group shadow-textarea">
+        <label for="textarea_in" class="list-group-item list-group-item-action waves-effect">Dane wejściowe</label>
+        <textarea class="form-control z-depth-1" id="textarea_in" rows="12"
+                  placeholder="Początek, koniec, waga ...">
 8 10
 0 1 10
 0 2 10
@@ -35,29 +92,105 @@
 4 6 -4
 5 6 1
 	</textarea>
-	</div>
-	
-      <div id="app"  class="row justify-content-center">
-          <div id="app-main" class="col-md-9"></div>
-          <div id="app-panel" class="col-md-3">
-            <div class="container">
-              <div class="row">
-                  <button type="button" class="btn btn-primary btn-lg">Tryb Usuwania</button>
-                  <button type="button" class="btn btn-primary btn-lg">Tryb Przenoszenia</button>
-                  <button type="button" class="btn btn-primary btn-lg">Tryb Edytowania</button>
-                  <button type="button" class="btn btn-primary btn-lg">Tryb Dodawania</button>
-                  <button type="button" class="btn btn-primary btn-lg">Tryb Pusty</button>
-              </div>
+      </div>
+    </div>
+    <!-- Sidebar -->
+
+
+  </header>
+  <!--Main Navigation-->
+
+  <!--Main layout-->
+  <main class="pt-5 mx-lg-5">      <!-- Heading -->
+<!--    <script src="src/jsgraphs.js"></script>-->
+    <script src="src/d3.v5.min.js"></script>
+    <script src="src/app.js"></script>
+<!--    <script src="src/main.js"> // regex, bellman-ford </script>-->
+
+    <script>
+      var body = d3.select('body')
+
+      body.append('input')
+              .attr('type','text')
+              .attr('name','textInput')
+              .attr('value','Text goes here Przykład możliwości')
+    </script>
+<!--    <div class="container-fluid mt-5">-->
+
+
+      <div id="app"  class="row justify-content-center d-inline-block">
+        <div id="app-main" class="col-md-9 "></div>
+        <div id="app-panel" class="col-md-3 d-inline">
+          <div class="container">
+            <div class="row">
+              <button type="button" class="btn btn-primary btn-lg ">Tryb Usuwania</button>
+              <button type="button" class="btn btn-primary btn-lg">Tryb Przenoszenia</button>
+              <button type="button" class="btn btn-primary btn-lg">Tryb Edytowania</button>
+              <button type="button" class="btn btn-primary btn-lg">Tryb Dodawania</button>
+              <button type="button" class="btn btn-primary btn-lg">Tryb Pusty</button>
             </div>
           </div>
+        </div>
       </div>
       <div id="test"></div>
-test
-  </body>
+      test
+      <!--Grid row-->
 
-  <script src="src/jsgraphs.js"></script>
-  <script src="src/main.js"> // regex, bellman-ford </script>
-  <script src="src/d3.v5.min.js"></script>
-  <script src="src/app.js"></script>
+  </main>
+  <!--Main layout-->
+
+  <!--Footer-->
+  <footer class="page-footer text-center font-small primary-color-dark darken-2 mt-4 wow fadeIn">
+
+    <!--Call to action-->
+    <div class="pt-4">
+      <a class="btn btn-outline-white" href="" target="_blank"
+        role="button">Example button
+
+        <i class="fas fa-download ml-2"></i>
+      </a>
+
+    </div>
+    <!--/.Call to action-->
+
+    <hr class="my-4">
+
+    <!-- Social icons -->
+    <div class="pb-4">
+
+      <a href="https://github.com/mdbootstrap/bootstrap-material-design" target="_blank">
+        <i class="fab fa-github mr-3"></i>
+      </a>
+
+    </div>
+    <!-- Social icons -->
+
+    <!--Copyright-->
+    <div class="footer-copyright py-3">
+      © 2019 Copyright:
+      <a href="https:pwsztar.edu.pl?param=I" target="_blank"> PWSZ Informatyka</a>
+    </div>
+    <!--/.Copyright-->
+
+  </footer>
+  <!--/.Footer-->
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="js/jquery-3.4.0.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- Initializations -->
+  <script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+
+  </script>
+
+</body>
 
 </html>
