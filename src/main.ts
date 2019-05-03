@@ -41,10 +41,10 @@ var t = regex[Symbol.match](OriginalString);
 
 // al.innerText = typeof (c);
 // var StrippedString = OriginalString.test(/(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*/,);
-array_of.innerText = t.length;
+array_of.innerText = t.length.toString();
 al.innerHTML = t.toString();
 console.log(OriginalString);
-console.log(toType(t));
+// console.log(toType(t));
 // alert(t);
 // window.onload = () => {
 // 		console.log("dddsd");
