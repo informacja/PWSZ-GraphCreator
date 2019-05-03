@@ -1,8 +1,8 @@
 {
 	"compileOnSave": true,
 	"compilerOptions": {
-		"lib": [ "ES6", "ES2018.RegExp", "DOM"],
-		"allowJs":false,
+		"lib": [ "es6", "es2018.regexp", "dom"],
+		"allowJs":true,
 //		"module": "commonjs",
 		"target":"ES6",
 		"outFile": "src/main.js",
@@ -12,7 +12,8 @@
     "removeComments": true
 	},
 	"files": [
-		"src/main.ts"
+		"src/main.ts",
+		"js/app.d.ts"
 	],
 
 	"include": [

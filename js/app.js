@@ -40,7 +40,7 @@ const nodes = [
   { id: 2, reflexive: false }
 ];
 let lastNodeId = 2;
-const links = [
+var links = [
   { source: nodes[0], target: nodes[1], left: false, right: true },
   { source: nodes[1], target: nodes[2], left: false, right: true }
 ];

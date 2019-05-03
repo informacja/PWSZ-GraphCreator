@@ -24,20 +24,28 @@
 // myObject: MyObject = new MyObject(value, unit);
 // declare var window: Window;
 // let foo = () => null;
-var toType = function(obj:Object) {
-    return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
-}
+// var toType = function(obj:Object) {
+//     return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
+// };
 
 declare var document: Document;
 var ta = document.getElementById('textarea_in');
 let al = document.getElementById('alert_area');
 let array_of = document.getElementById('array_of');
+let alert_area = document.getElementById('alert_area');
 var OriginalString:string = ta.innerHTML;
 
 let regex = new RegExp(/(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*/mig);
 var t = regex[Symbol.match](OriginalString);
 
+let num_of_lines = OriginalString.split(/\r\n|\r|\n/).length;
 
+console.log("lines:" + num_of_lines);
+console.log("match:"+ t.length);
+// if(num_of_lines != t.length)
+{
+    alert_area.setAttribute("style", "opacity:1;!important;"); // TODO
+}
 
 // al.innerText = typeof (c);
 // var StrippedString = OriginalString.test(/(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*/,);
@@ -45,11 +53,14 @@ array_of.innerText = t.length.toString();
 al.innerHTML = t.toString();
 console.log(OriginalString);
 
-// var links: [ int, int, boolean ];
-declare var links: [Number,Number,Boolean,Boolean,Number];
+links = [
+    { source: nodes[2], target: nodes[0], left: false, right: true },
+    { source: nodes[1], target: nodes[0], left: false, right: true }
+];
+
+restart();
 console.log(links);
-// console.log(toType(t));
-// alert(t);
+
 // window.onload = () => {
 // 		console.log("dddsd");
     // HTMLElement el = document.getElementById('content');
