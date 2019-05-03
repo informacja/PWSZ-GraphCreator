@@ -24,11 +24,26 @@
 // myObject: MyObject = new MyObject(value, unit);
 // declare var window: Window;
 // let foo = () => null;
+var toType = function(obj:Object) {
+    return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
+}
+
 declare var document: Document;
 var ta = document.getElementById('textarea_in');
-var OriginalString:String = ta.toString();
-var StrippedString = OriginalString.replace(/(<([^>]+)>)/ig,"");
-console.log(StrippedString);
+let al = document.getElementById('alert_area');
+var OriginalString:string = ta.innerHTML;
+
+let regex = new RegExp(/(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*/mig);
+var t = regex[Symbol.match](OriginalString);
+
+
+
+// al.innerText = typeof (c);
+// var StrippedString = OriginalString.test(/(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*/,);
+al.innerHTML = t.toString();
+console.log(OriginalString);
+console.log(toType(t));
+// alert(t);
 // window.onload = () => {
 // 		console.log("dddsd");
     // HTMLElement el = document.getElementById('content');

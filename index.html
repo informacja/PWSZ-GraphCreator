@@ -53,14 +53,20 @@
           </ul>
 
           <!-- Right -->
-          <ul class="navbar-nav nav-flex-icons">
-
+          <ul class="navbar-nav nav-flex-icons ">
+              <li class="nav-item mr-2">
+                  <a href="https://github.com/informacja/PWSZ-GraphCreator/wiki" class="nav-link border border-light rounded waves-effect"
+                     target="_blank">
+                      <i class="fas fa-book-open mr-2"></i>Wiki
+                  </a>
+              </li>
             <li class="nav-item">
               <a href="https://github.com/informacja/PWSZ-GraphCreator" class="nav-link border border-light rounded waves-effect"
                 target="_blank">
                 <i class="fab fa-github mr-2"></i>Graph editor
               </a>
             </li>
+
           </ul>
 
         </div>
@@ -80,7 +86,6 @@
         <label for="textarea_in" class="list-group-item list-group-item-action waves-effect">Dane wejściowe</label>
         <textarea class="form-control z-depth-1" id="textarea_in" rows="12"
                   placeholder="Początek, koniec, waga ...">
-8 10
 0 1 10
 0 2 10
 0 5 2
@@ -92,6 +97,9 @@
 4 6 -4
 5 6 1
 	</textarea>
+        <div class="alert alert-light" role="alert" id="alert_area">
+          A simple light alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+        </div>
       </div>
     </div>
     <!-- Sidebar -->
@@ -102,19 +110,18 @@
 
   <!--Main layout-->
   <main class="pt-5 mx-lg-5">      <!-- Heading -->
-<!--    <script src="src/jsgraphs.js"></script>-->
+    <script src="src/jsgraphs.js"></script>
     <script src="src/d3.v5.min.js"></script>
     <script src="src/app.js"></script>
-<!--    <script src="src/main.js"> // regex, bellman-ford </script>-->
 
-    <script>
-      var body = d3.select('body')
+<!--    <script>-->
+<!--      var body = d3.select('body')-->
 
-      body.append('input')
-              .attr('type','text')
-              .attr('name','textInput')
-              .attr('value','Text goes here Przykład możliwości')
-    </script>
+<!--      body.append('input')-->
+<!--              .attr('type','text')-->
+<!--              .attr('name','textInput')-->
+<!--              .attr('value','Text goes here Przykład możliwości')-->
+<!--    </script>-->
 <!--    <div class="container-fluid mt-5">-->
 
 
@@ -143,14 +150,14 @@
   <footer class="page-footer text-center font-small primary-color-dark darken-2 mt-4 wow fadeIn">
 
     <!--Call to action-->
-    <div class="pt-4">
-      <a class="btn btn-outline-white" href="" target="_blank"
-        role="button">Example button
+<!--    <div class="pt-4">-->
+<!--      <a class="btn btn-outline-white" href="" target="_blank"-->
+<!--        role="button">Example button-->
 
-        <i class="fas fa-download ml-2"></i>
-      </a>
+<!--        <i class="fas fa-download ml-2"></i>-->
+<!--      </a>-->
 
-    </div>
+<!--    </div>-->
     <!--/.Call to action-->
 
     <hr class="my-4">
@@ -187,9 +194,10 @@
   <!-- Initializations -->
   <script type="text/javascript">
     // Animations initialization
-    new WOW().init();
+    // new WOW().init();
 
   </script>
+  <script src="src/main.js"> // regex, bellman-ford </script>
 
 </body>
 

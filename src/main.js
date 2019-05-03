@@ -1,7 +1,14 @@
+var toType = function (obj) {
+    return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
+};
 var ta = document.getElementById('textarea_in');
-var OriginalString = ta.toString();
-var StrippedString = OriginalString.replace(/(<([^>]+)>)/ig, "");
-console.log(StrippedString);
+let al = document.getElementById('alert_area');
+var OriginalString = ta.innerHTML;
+let regex = new RegExp(/(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*/mig);
+var t = regex[Symbol.match](OriginalString);
+al.innerHTML = t.toString();
+console.log(OriginalString);
+console.log(toType(t));
 var jsgraphs = require('js-graph-algorithms');
 var g = new jsgraphs.WeightedDiGraph(8);
 g.addEdge(new jsgraphs.Edge(0, 7, 0.16));
