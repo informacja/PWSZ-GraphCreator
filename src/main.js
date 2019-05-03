@@ -10,4 +10,5 @@ var t = regex[Symbol.match](OriginalString);
 array_of.innerText = t.length.toString();
 al.innerHTML = t.toString();
 console.log(OriginalString);
+console.log(links);
 //# sourceMappingURL=main.js.map

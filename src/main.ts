@@ -25,7 +25,7 @@
 // declare var window: Window;
 // let foo = () => null;
 var toType = function(obj:Object) {
-    return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
+    return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
 }
 
 declare var document: Document;
@@ -44,6 +44,10 @@ var t = regex[Symbol.match](OriginalString);
 array_of.innerText = t.length.toString();
 al.innerHTML = t.toString();
 console.log(OriginalString);
+
+// var links: [ int, int, boolean ];
+declare var links: [Number,Number,Boolean,Boolean,Number];
+console.log(links);
 // console.log(toType(t));
 // alert(t);
 // window.onload = () => {
