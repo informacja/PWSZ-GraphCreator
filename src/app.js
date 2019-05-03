@@ -39,7 +39,7 @@ const force = d3.forceSimulation()
 
 // init D3 drag support
 const drag = d3.drag()
-  // Mac Firefox doesn't distinguish between left/right click when Ctrl is held... 
+  // Mac Firefox doesn't distinguish between left/right click when Ctrl is held...
   .filter(() => d3.event.button === 0  || d3.event.button === 2)
   .on('start', (d) => {
     if (!d3.event.active) force.alphaTarget(0.3).restart();
@@ -119,9 +119,9 @@ function tick() {
     const sourceY = d.source.y + (sourcePadding * normY);
     const targetX = d.target.x - (targetPadding * normX);
     const targetY = d.target.y - (targetPadding * normY);
-    
+
     return `M${sourceX},${sourceY}L${targetX},${targetY}`;
-    
+
   });
 
   circle.attr('transform', (d) => `translate(${d.x},${d.y})`);
@@ -231,17 +231,17 @@ function restart() {
 
 
       const oldLink = links.filter(p => p.source.id == source.id && p.target.id == target.id)[0];
-      
+
       if(oldLink)
         links.splice(oldLink.index, 1);
-      
+
       const link = links.filter((l) => l.source === source && l.target === target)[0];
       if (link) {
         link[isRight ? 'right' : 'left'] = true;
       } else {
         links.push({ source, target, left: !isRight, right: isRight });
       }
-      
+
       // select new link
       selectedLink = link;
       selectedNode = null;
@@ -312,7 +312,7 @@ function spliceLinksForNode(node) {
 let lastKeyDown = -1;
 
 function keydown() {
-  d3.event.preventDefault();
+  // d3.event.preventDefault(); // Zakomentowałem bo nie dało się wprowadzać danych Piotr Wawryka PS: to jedyna modyfikacja i kilka lini niżej
 
   if (lastKeyDown !== -1) return;
   lastKeyDown = d3.event.keyCode;
@@ -324,7 +324,7 @@ function keydown() {
     return;
   }
 
-  if (!selectedNode && !selectedLink) return;
+  // if (!selectedNode && !selectedLink) return; /// potrzebne do pisania
 
   switch (d3.event.keyCode) {
     case 8: // backspace
@@ -345,7 +345,7 @@ function keydown() {
         if(selectedLink.left == false && selectedLink.right == true){
           selectedLink.left = true;
           selectedLink.right = false;
-          
+
         }else{
           selectedLink.left = false;
           selectedLink.right = true;
