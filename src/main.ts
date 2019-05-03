@@ -30,21 +30,22 @@
 
 declare var document: Document;
 var ta = document.getElementById('textarea_in');
-let al = document.getElementById('alert_area');
+let al = document.getElementById('textarea_out');
 let array_of = document.getElementById('array_of');
-let alert_area = document.getElementById('alert_area');
+let alert_area = document.getElementById('alert_lines');
 var OriginalString:string = ta.innerHTML;
 
 let regex = new RegExp(/(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*/mig);
 var t = regex[Symbol.match](OriginalString);
 
-let num_of_lines = OriginalString.split(/\r\n|\r|\n/).length;
-
-console.log("lines:" + num_of_lines);
-console.log("match:"+ t.length);
-// if(num_of_lines != t.length)
+let num_of_lines:number = OriginalString.split(/\r\n|\r|\n/).length;
+let num_of_empty:number = OriginalString.split(/^\s*$/).length;
+num_of_lines -= num_of_empty;
+console.log("lines: " + num_of_lines);
+console.log("match: "+ t.length);
+if(num_of_lines != t.length)
 {
-    alert_area.setAttribute("style", "opacity:1;!important;"); // TODO
+    alert_area.className += " show";
 }
 
 // al.innerText = typeof (c);
