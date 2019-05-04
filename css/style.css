@@ -26,3 +26,17 @@
 @media (max-width: 1199.98px) {
   .sidebar-fixed {
     display: none; } }
+
+ textarea#textarea_in {
+   border: 0;
+ }
+
+#wrapper{
+  height: 300px;
+  box-shadow: 0 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12)  !important
+}
+/* no focus*/
+textarea#textarea_in:focus {
+  outline: -webkit-focus-ring-color auto 0px;
+  outline-width: 0px;
+}

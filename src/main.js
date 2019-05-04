@@ -1,6 +1,7 @@
 var ta = document.getElementById('textarea_in');
 let al = document.getElementById('textarea_out');
-let array_of = document.getElementById('array_of');
+let info_success = document.getElementById('array_of_success');
+let info_warning = document.getElementById('array_of_warning');
 let alert_area = document.getElementById('alert_lines');
 var OriginalString = ta.innerHTML;
 let regex = new RegExp(/(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*/mig);
@@ -12,8 +13,9 @@ console.log("lines: " + num_of_lines);
 console.log("match: " + t.length);
 if (num_of_lines != t.length) {
     alert_area.className += " show";
+    info_warning.innerText = num_of_lines - t.length;
 }
-array_of.innerText = t.length.toString();
+info_success.innerText = t.length.toString();
 al.innerHTML = t.toString();
 console.log(OriginalString);
 links = [

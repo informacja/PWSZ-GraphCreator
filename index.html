@@ -14,8 +14,11 @@
   <link href="css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="css/style.min.css" rel="stylesheet">
-
+  <!-- Wygląd grafu -->
   <link rel="stylesheet" href="css/app.css">
+  <!-- Numery lini w text area -->
+  <link rel="stylesheet" type="text/css" href="./css/tln.css"/>
+
 <!--  <link rel="stylesheet" href="css/main.css">-->
 <!--  <link rel="stylesheet" href="lib/boostrap/css/bootstrap.min.css">-->
 <!--  <link rel="stylesheet" href="lib/fontawensome/css/all.css">-->
@@ -32,7 +35,6 @@
     <!-- Navbar -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
       <div class="container-fluid">
-
 
         <!-- Collapse -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -71,29 +73,29 @@
                 <i class="fab fa-github mr-2"></i>Graph editor
               </a>
             </li>
-
           </ul>
-
         </div>
-
       </div>
     </nav>
     <!-- Navbar -->
-
-    <!-- Sidebar -->
+     <!-- Sidebar -->
     <div class="sidebar-fixed position-fixed">
 
       <a class="logo-wrapper waves-effect">
         <img src="img/zi.jpg" class="img-fluid mh-100" alt="">
       </a>
 
-      <div class="form-group shadow-textarea">
+      <div class="form-group shadow-textarea shadow mb-0">
+
         <label for="textarea_in" class="list-group-item list-group-item-action waves-effect">Dane wejściowe
-          <span class="badge badge-success ml-1" id="array_of"></span>
-<!--          <span class="badge badge-info ml-2">9</span>-->
+          <span class="badge badge-success ml-1" id="array_of_success" title="Poprawnych"></span>
+          <span class="badge badge-warning ml-2" id="array_of_warning" title="Błędnych"></span>
         </label>
-        <textarea class="form-control z-depth-1" id="textarea_in" rows="12"
-                  placeholder="Początek, koniec, waga ...">
+        <!-- Warpper for line nubers -->
+        <div id="wrapper" class="form-control z-depth-1">
+
+          <textarea class=" " id="textarea_in" rows="12"
+                  placeholder="Początek koniec waga">
 0 1 10
 0 2 10
 0 5 2
@@ -104,15 +106,16 @@
 4 2 4
 4 6 -4
 5 6 1
-	</textarea>
+	      </textarea>
+        </div>
       </div>
-        <div id="debug-out">
+        <div id="debug-out" class=" pt-3">
           <div class="alert alert-light" role="alert" id="textarea_out">
             <a href="#" class="alert-link"></a>
           </div>
 
           <div class="alert alert-warning alert-dismissible fade " role="alert" id="alert_lines">
-            <strong>O nie!</strong> Chyba coś się nie zgadza. Sprawdź czy dane są poprawnie wprowadzone. <br> <strong>int, int, double</strong>
+            <strong>O nie!</strong> Chyba coś się nie zgadza. Sprawdź czy dane są poprawnie wprowadzone. <br> <strong>int, int, double</strong><br> Muszą być dodatnie
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -120,7 +123,6 @@
         </div>
     </div>
     <!-- Sidebar -->
-
 
   </header>
   <!--Main Navigation-->
@@ -230,6 +232,10 @@
     // Animations initialization
     new WOW().init();
 
+    var placeholder = 'Początek \mkoniec \nwaga \n  1 2 3';
+    $('textarea_in').attr('value', placeholder);
+
+
   </script>
   <!-- Biblioteka graficzna -->
   <script src="js/d3.v5.min.js"></script>
@@ -237,6 +243,9 @@
   <script src="js/app.js"> </script>
   <!-- Wprowadzanie danych i algorytm bellmana-forda -->
   <script src="src/main.js"> // regex, bellman-ford </script>
+  <!-- Numery lini w text area -->
+  <script type="text/javascript" src="./js/tln.js"></script>
+
 
 </body>
 
