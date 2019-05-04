@@ -27,6 +27,10 @@
 // var toType = function(obj:Object) {
 //     return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
 // };
+// import {deflateRaw} from "zlib";
+
+// import {isNumber} from "util";
+
 declare var document: Document;
 
 let  debug = true;
@@ -39,8 +43,10 @@ let info_success = document.getElementById('array_of_success');
 let info_warning = document.getElementById('array_of_warning');
 let alert_area = document.getElementById('alert_lines');
 
-function load_input() {
+var wg:any;
 
+function load_input()
+{
     let OriginalString:string = text_area.value;
     let weigth_graph = new RegExp(/(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*/mig);
     let empty_line = new RegExp(/^\s*$/mig)
@@ -50,7 +56,7 @@ function load_input() {
     if (em_l !== null)
         num_of_empty = em_l.length;
 
-    let wg = weigth_graph[Symbol.match](OriginalString);
+    wg = weigth_graph[Symbol.match](OriginalString);
     let count_of_match:number = 0;
     if( wg !== null )
         count_of_match = wg.length;
@@ -66,7 +72,7 @@ function load_input() {
         info_warning.innerText = String(num_of_lines - count_of_match);
     }
     else {
-        alert_area.className.replace("show","");
+        alert_area.className = alert_area.className.replace("show","");
         info_warning.innerText = "";
     }
 
@@ -75,16 +81,61 @@ function load_input() {
     console.debug(OriginalString);
 }
 
-links = [
-    { source: nodes[2], target: nodes[0], left: false, right: true },
-    { source: nodes[1], target: nodes[0], left: false, right: true }
-];
+function draw_graph() {
+    // console.info(wg);
+    links = Array(null);
+    
+    function num_of_vertex() {
+        // do jdenej [0] oraz [1] tablicy i usuwanie powtórzeń
+    }
+    nodes = [
+        { id: 0, reflexive: false },
+        { id: 1, reflexive: true },
+        { id: 2, reflexive: true },
+        { id: 3, reflexive: true },
+        { id: 4, reflexive: false }
+    ];
+    lastNodeId = 4;
+    let i = 0;
+    for( let a of wg )
+    {
+        // let c =
+        a = a.split(" ");
+        console.info(a);
+        let c:number = parseFloat(a[1])
+        console.info(typeof c);
 
-console.log(links);
 
-load_input();
+        let s:number = Number(a[0]);
+        // set up initial nodes and links
+//  - nodes are known by 'id', not by index in array.
+//  - reflexive edges are indicated on the node (as a bold black circle).
+//  - links are always source < target; edge directions are set by 'left' and 'right'.
+
+        links[i++] =  { source: nodes[a[0]], target: nodes[a[1]], left: false, right: true } ;
+        // console.debug(a[0]);
+    }
+
+    var some = [ 3, 3, 3];
+
+
+    // links = [
+    //     {source: nodes[2], target: nodes[0], left: false, right: true},
+    //     {source: nodes[1], target: nodes[0], left: false, right: true}
+    // ];
+    console.debug(nodes);
+    console.debug(links);
+}
+
+
+function execute() {
+    load_input();
+    draw_graph();
+    restart();
+}
+
+execute();
 restart();
-
 // window.onload = () => {
 // 		console.log("dddsd");
     // HTMLElement el = document.getElementById('content');

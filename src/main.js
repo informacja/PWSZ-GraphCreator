@@ -6,6 +6,7 @@ let al = document.getElementById('textarea_out');
 let info_success = document.getElementById('array_of_success');
 let info_warning = document.getElementById('array_of_warning');
 let alert_area = document.getElementById('alert_lines');
+var wg;
 function load_input() {
     let OriginalString = text_area.value;
     let weigth_graph = new RegExp(/(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*/mig);
@@ -14,7 +15,7 @@ function load_input() {
     let num_of_empty = 0;
     if (em_l !== null)
         num_of_empty = em_l.length;
-    let wg = weigth_graph[Symbol.match](OriginalString);
+    wg = weigth_graph[Symbol.match](OriginalString);
     let count_of_match = 0;
     if (wg !== null)
         count_of_match = wg.length;
@@ -28,19 +29,44 @@ function load_input() {
         info_warning.innerText = String(num_of_lines - count_of_match);
     }
     else {
-        alert_area.className.replace("show", "");
+        alert_area.className = alert_area.className.replace("show", "");
         info_warning.innerText = "";
     }
     info_success.innerText = count_of_match.toString();
     al.innerHTML = wg.toString();
     console.debug(OriginalString);
 }
-links = [
-    { source: nodes[2], target: nodes[0], left: false, right: true },
-    { source: nodes[1], target: nodes[0], left: false, right: true }
-];
-console.log(links);
-load_input();
+function draw_graph() {
+    links = Array(null);
+    function num_of_vertex() {
+    }
+    nodes = [
+        { id: 0, reflexive: false },
+        { id: 1, reflexive: true },
+        { id: 2, reflexive: true },
+        { id: 3, reflexive: true },
+        { id: 4, reflexive: false }
+    ];
+    lastNodeId = 4;
+    let i = 0;
+    for (let a of wg) {
+        a = a.split(" ");
+        console.info(a);
+        let c = parseFloat(a[1]);
+        console.info(typeof c);
+        let s = Number(a[0]);
+        links[i++] = { source: nodes[a[0]], target: nodes[a[1]], left: false, right: true };
+    }
+    var some = [3, 3, 3];
+    console.debug(nodes);
+    console.debug(links);
+}
+function execute() {
+    load_input();
+    draw_graph();
+    restart();
+}
+execute();
 restart();
 var jsgraphs = jsgraphs || {};
 (function (jss) {

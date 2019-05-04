@@ -3,11 +3,11 @@
 declare const colors: any;
 declare const svg: any;
 declare const force: any;
-declare const nodes: {
+declare var nodes: {
     id: number;
     reflexive: boolean;
 }[];
-declare let lastNodeId: number;
+declare var lastNodeId: number;
 declare var links: {
     source: {
         id: number;

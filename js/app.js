@@ -34,12 +34,12 @@ $( window ).resize(function() {
 //  - nodes are known by 'id', not by index in array.
 //  - reflexive edges are indicated on the node (as a bold black circle).
 //  - links are always source < target; edge directions are set by 'left' and 'right'.
-const nodes = [
+var nodes = [
   { id: 0, reflexive: false },
   { id: 1, reflexive: true },
   { id: 2, reflexive: false }
 ];
-let lastNodeId = 2;
+var lastNodeId = 2;
 var links = [
   { source: nodes[0], target: nodes[1], left: false, right: true },
   { source: nodes[1], target: nodes[2], left: false, right: true }
