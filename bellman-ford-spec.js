@@ -1,5 +1,5 @@
-var expect = require('chai').expect;
-var jsgraphs = require('./src/jsgraphs');
+// var expect = require('chai').expect;
+// var jsgraphs = require('./src/jsgraphs');
 
 // describe('Bellman Ford', function(){
 //    it('should get shortest path from Weigthed Directed Graph', function(){
@@ -21,22 +21,22 @@ var jsgraphs = require('./src/jsgraphs');
         g.addEdge(new jsgraphs.Edge(7, 5, 6.0));
         g.addEdge(new jsgraphs.Edge(7, 2, 7.0));  
        
-        expect(g.V).to.equal(8);
+        // expect(g.V).to.equal(8);
         var edgeCount = 0;
         for(var v = 0; v < g.V; ++v){
             var adj_v = g.adj(v);
             edgeCount += adj_v.length;
         }
-        expect(edgeCount).to.equal(16);
+        // expect(edgeCount).to.equal(16);
        
         var bf = new jsgraphs.BellmanFord(g, 0);
        
         for(var v = 1; v < g.V; ++v){
             if(bf.hasPathTo(v)){
-                var path = bf.pathTo(v);
+                var pathT = bf.pathTo(v);
                 console.log('=====path from 0 to ' + v + ' start==========');
-                for(var i = 0; i < path.length; ++i) {
-                    var e = path[i];
+                for(var i = 0; i < pathT.length; ++i) {
+                    var e = pathT[i];
                     console.log(e.from() + ' => ' + e.to() + ': ' + e.weight);
                 }
                 console.log('=====path from 0 to ' + v + ' end==========');

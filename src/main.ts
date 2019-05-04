@@ -27,44 +27,63 @@
 // var toType = function(obj:Object) {
 //     return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
 // };
-
 declare var document: Document;
-var ta = document.getElementById('textarea_in');
+
+let  debug = true;
+if (debug)
+    console.debug = function(a:any) { console.log(a) }  // easy disable debug
+
+let text_area = document.getElementById('textarea_in');
 let al = document.getElementById('textarea_out');
 let info_success = document.getElementById('array_of_success');
 let info_warning = document.getElementById('array_of_warning');
 let alert_area = document.getElementById('alert_lines');
-var OriginalString:string = ta.innerHTML;
 
-let regex = new RegExp(/(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*/mig);
-var t = regex[Symbol.match](OriginalString);
+function load_input() {
 
-let num_of_lines:number = OriginalString.split(/\r\n|\r|\n/).length;
-let num_of_empty:number = OriginalString.split(/^\s*$/).length;
-num_of_lines -= num_of_empty;
-console.log("lines: " + num_of_lines);
-console.log("match: "+ t.length);
-if(num_of_lines != t.length)
-{
-    alert_area.className += " show";
-    info_warning.innerText = String( num_of_lines - t.length );
+    let OriginalString:string = text_area.value;
+    let weigth_graph = new RegExp(/(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*/mig);
+    let empty_line = new RegExp(/^\s*$/mig)
 
+    let em_l = empty_line[Symbol.match](OriginalString);
+    let num_of_empty: number = 0;
+    if (em_l !== null)
+        num_of_empty = em_l.length;
+
+    let wg = weigth_graph[Symbol.match](OriginalString);
+    let count_of_match:number = 0;
+    if( wg !== null )
+        count_of_match = wg.length;
+
+    let num_of_lines: number = OriginalString.split(/\r\n|\r|\n/).length;
+
+    console.debug("all lines : " + num_of_lines);
+    num_of_lines -= num_of_empty;
+    console.debug("lines without empty: " + num_of_lines);
+    console.debug("match: " + count_of_match);
+    if (num_of_lines != count_of_match) {
+        alert_area.className += " show";
+        info_warning.innerText = String(num_of_lines - count_of_match);
+    }
+    else {
+        alert_area.className.replace("show","");
+        info_warning.innerText = "";
+    }
+
+    info_success.innerText = count_of_match.toString();
+    al.innerHTML = wg.toString();
+    console.debug(OriginalString);
 }
-
-// al.innerText = typeof (c);
-// var StrippedString = OriginalString.test(/(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*/,);
-info_success.innerText = t.length.toString();
-
-al.innerHTML = t.toString();
-console.log(OriginalString);
 
 links = [
     { source: nodes[2], target: nodes[0], left: false, right: true },
     { source: nodes[1], target: nodes[0], left: false, right: true }
 ];
 
-restart();
 console.log(links);
+
+load_input();
+restart();
 
 // window.onload = () => {
 // 		console.log("dddsd");
