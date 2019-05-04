@@ -13,7 +13,7 @@ console.log("lines: " + num_of_lines);
 console.log("match: " + t.length);
 if (num_of_lines != t.length) {
     alert_area.className += " show";
-    info_warning.innerText = num_of_lines - t.length;
+    info_warning.innerText = String(num_of_lines - t.length);
 }
 info_success.innerText = t.length.toString();
 al.innerHTML = t.toString();

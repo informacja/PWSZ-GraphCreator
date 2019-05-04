@@ -47,7 +47,7 @@ console.log("match: "+ t.length);
 if(num_of_lines != t.length)
 {
     alert_area.className += " show";
-    info_warning.innerText = num_of_lines - t.length;
+    info_warning.innerText = String( num_of_lines - t.length );
 
 }
 
