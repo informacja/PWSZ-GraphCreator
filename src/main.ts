@@ -35,7 +35,7 @@ declare var document: Document;
 
 let  debug = true;
 if (debug)
-    console.debug = function(a:any) { console.log(a) }  // easy disable debug
+    console.debug = function(a:any) { console.log(a) };  // easy disable debug
 
 let text_area = document.getElementById('textarea_in');
 let al = document.getElementById('textarea_out');
@@ -49,7 +49,7 @@ function load_input()
 {
     let OriginalString:string = text_area.value;
     let weigth_graph = new RegExp(/(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*/mig);
-    let empty_line = new RegExp(/^\s*$/mig)
+    let empty_line = new RegExp(/^\s*$/mig);
 
     let em_l = empty_line[Symbol.match](OriginalString);
     let num_of_empty: number = 0;
@@ -81,13 +81,17 @@ function load_input()
     console.debug(OriginalString);
 }
 
+
+function num_of_vertex():Number {
+    // do jdenej [0] oraz [1] tablicy i usuwanie powtórzeń
+}
+
 function draw_graph() {
     // console.info(wg);
     links = Array(null);
     
-    function num_of_vertex() {
-        // do jdenej [0] oraz [1] tablicy i usuwanie powtórzeń
-    }
+    let num_of_vertex:number = num_of_vertex() || 4;
+
     nodes = [
         { id: 0, reflexive: false },
         { id: 1, reflexive: true },
@@ -95,34 +99,14 @@ function draw_graph() {
         { id: 3, reflexive: true },
         { id: 4, reflexive: false }
     ];
-    lastNodeId = 4;
+    lastNodeId = num_of_vertex;
     let i = 0;
     for( let a of wg )
     {
-        // let c =
         a = a.split(" ");
-        console.info(a);
-        let c:number = parseFloat(a[1])
-        console.info(typeof c);
-
-
-        let s:number = Number(a[0]);
-        // set up initial nodes and links
-//  - nodes are known by 'id', not by index in array.
-//  - reflexive edges are indicated on the node (as a bold black circle).
-//  - links are always source < target; edge directions are set by 'left' and 'right'.
-
         links[i++] =  { source: nodes[a[0]], target: nodes[a[1]], left: false, right: true } ;
-        // console.debug(a[0]);
     }
 
-    var some = [ 3, 3, 3];
-
-
-    // links = [
-    //     {source: nodes[2], target: nodes[0], left: false, right: true},
-    //     {source: nodes[1], target: nodes[0], left: false, right: true}
-    // ];
     console.debug(nodes);
     console.debug(links);
 }

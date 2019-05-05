@@ -36,10 +36,11 @@ function load_input() {
     al.innerHTML = wg.toString();
     console.debug(OriginalString);
 }
+function num_of_vertex() {
+}
 function draw_graph() {
     links = Array(null);
-    function num_of_vertex() {
-    }
+    let num_of_vertex = num_of_vertex() || 4;
     nodes = [
         { id: 0, reflexive: false },
         { id: 1, reflexive: true },
@@ -47,17 +48,12 @@ function draw_graph() {
         { id: 3, reflexive: true },
         { id: 4, reflexive: false }
     ];
-    lastNodeId = 4;
+    lastNodeId = num_of_vertex;
     let i = 0;
     for (let a of wg) {
         a = a.split(" ");
-        console.info(a);
-        let c = parseFloat(a[1]);
-        console.info(typeof c);
-        let s = Number(a[0]);
         links[i++] = { source: nodes[a[0]], target: nodes[a[1]], left: false, right: true };
     }
-    var some = [3, 3, 3];
     console.debug(nodes);
     console.debug(links);
 }
