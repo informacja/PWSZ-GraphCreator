@@ -6,7 +6,8 @@ let al = document.getElementById('textarea_out');
 let info_success = document.getElementById('array_of_success');
 let info_warning = document.getElementById('array_of_warning');
 let alert_area = document.getElementById('alert_lines');
-var wg;
+var wg_match;
+var wg_match1;
 function load_input() {
     let OriginalString = text_area.value;
     let weigth_graph = new RegExp(/(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*/mig);
@@ -15,10 +16,11 @@ function load_input() {
     let num_of_empty = 0;
     if (em_l !== null)
         num_of_empty = em_l.length;
-    wg = weigth_graph[Symbol.match](OriginalString);
+    wg_match = weigth_graph[Symbol.match](OriginalString);
+    wg_match1 = wg_match.isPrototypeOf(1);
     let count_of_match = 0;
-    if (wg !== null)
-        count_of_match = wg.length;
+    if (wg_match !== null)
+        count_of_match = wg_match.length;
     let num_of_lines = OriginalString.split(/\r\n|\r|\n/).length;
     console.debug("all lines : " + num_of_lines);
     num_of_lines -= num_of_empty;
@@ -33,14 +35,36 @@ function load_input() {
         info_warning.innerText = "";
     }
     info_success.innerText = count_of_match.toString();
-    al.innerHTML = wg.toString();
-    console.debug(OriginalString);
+    al.innerHTML = wg_match.toString();
+    console.debug(wg_match.toString().replace('.', '\n'));
+}
+function removeDups(names) {
+    let unique = {};
+    names.forEach(function (i) {
+        if (!unique[i]) {
+            unique[i] = true;
+        }
+    });
+    return Object.keys(unique);
 }
 function num_of_vertex() {
+    let graph_ids = Array("");
+    let i = 0;
+    for (let a of wg_match) {
+        a = a.match("\d");
+        console.debug(a);
+        graph_ids[i++] = a[0];
+        graph_ids[i++] = a[1];
+    }
+    console.debug("sum of vertex: " + graph_ids);
+    let unique = removeDups(graph_ids);
+    console.debug("unique of vertex: " + unique);
+    return unique;
 }
 function draw_graph() {
     links = Array(null);
-    let num_of_vertex = num_of_vertex() || 4;
+    var arr = num_of_vertex();
+    console.log(arr);
     nodes = [
         { id: 0, reflexive: false },
         { id: 1, reflexive: true },
@@ -48,9 +72,13 @@ function draw_graph() {
         { id: 3, reflexive: true },
         { id: 4, reflexive: false }
     ];
-    lastNodeId = num_of_vertex;
     let i = 0;
-    for (let a of wg) {
+    for (let a of wg_match) {
+        a = a.split(" ");
+        links[i++] = { source: nodes[a[0]], target: nodes[a[1]], left: false, right: true };
+    }
+    i = 0;
+    for (let a of wg_match) {
         a = a.split(" ");
         links[i++] = { source: nodes[a[0]], target: nodes[a[1]], left: false, right: true };
     }
@@ -63,7 +91,6 @@ function execute() {
     restart();
 }
 execute();
-restart();
 var jsgraphs = jsgraphs || {};
 (function (jss) {
     jss.less = function (a1, a2, compare) {

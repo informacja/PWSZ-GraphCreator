@@ -1,7 +1,7 @@
 {
 	"compileOnSave": true,
 	"compilerOptions": {
-		"lib": [ "es6", "es2018.regexp", "dom"],
+		"lib": [ "es6", "es2018.regexp", "dom", "es2018" ],
 		"allowJs":true,
 //		"module": "commonjs",
 		"target":"ES6",

@@ -43,7 +43,8 @@ let info_success = document.getElementById('array_of_success');
 let info_warning = document.getElementById('array_of_warning');
 let alert_area = document.getElementById('alert_lines');
 
-var wg:any;
+var wg_match:any;
+var wg_match1:Array<number>;
 
 function load_input()
 {
@@ -56,10 +57,11 @@ function load_input()
     if (em_l !== null)
         num_of_empty = em_l.length;
 
-    wg = weigth_graph[Symbol.match](OriginalString);
+    wg_match = weigth_graph[Symbol.match](OriginalString);
+    wg_match1 = wg_match.isPrototypeOf(1)
     let count_of_match:number = 0;
-    if( wg !== null )
-        count_of_match = wg.length;
+    if( wg_match !== null )
+        count_of_match = wg_match.length;
 
     let num_of_lines: number = OriginalString.split(/\r\n|\r|\n/).length;
 
@@ -77,20 +79,49 @@ function load_input()
     }
 
     info_success.innerText = count_of_match.toString();
-    al.innerHTML = wg.toString();
-    console.debug(OriginalString);
+    al.innerHTML = wg_match.toString();
+    console.debug( wg_match.toString().replace('.','\n') );
 }
 
 
-function num_of_vertex():Number {
-    // do jdenej [0] oraz [1] tablicy i usuwanie powtórzeń
+function removeDups(names) {
+    let unique = {};
+    names.forEach(function(i) {
+        if(!unique[i]) {
+            unique[i] = true;
+        }
+    });
+    return Object.keys(unique);
 }
 
-function draw_graph() {
-    // console.info(wg);
+function num_of_vertex():Array<number>
+{
+    let graph_ids = Array("");
+    let i = 0;
+    for( let a of wg_match )
+    {
+        a = a.match("\d");
+        console.debug(a);
+        graph_ids[i++] = a[0];
+        graph_ids[i++] = a[1];
+    }
+    console.debug("sum of vertex: " + graph_ids);
+
+    let unique = removeDups(graph_ids);
+    console.debug("unique of vertex: " + unique);
+
+    return unique;
+}
+
+function draw_graph()
+{
     links = Array(null);
-    
-    let num_of_vertex:number = num_of_vertex() || 4;
+
+    // let num_of_ver:number = num_of_vertex();
+
+    var arr = num_of_vertex();
+    console.log(arr);
+    // lastNodeId = (num_of_vertex()).length;
 
     nodes = [
         { id: 0, reflexive: false },
@@ -99,9 +130,16 @@ function draw_graph() {
         { id: 3, reflexive: true },
         { id: 4, reflexive: false }
     ];
-    lastNodeId = num_of_vertex;
+    // nodes = Array(null);
     let i = 0;
-    for( let a of wg )
+    for( let a of wg_match )
+    {
+        a = a.split(" ");
+        links[i++] =  { source: nodes[a[0]], target: nodes[a[1]], left: false, right: true } ;
+    }
+
+    i = 0;
+    for( let a of wg_match )
     {
         a = a.split(" ");
         links[i++] =  { source: nodes[a[0]], target: nodes[a[1]], left: false, right: true } ;
@@ -111,7 +149,6 @@ function draw_graph() {
     console.debug(links);
 }
 
-
 function execute() {
     load_input();
     draw_graph();
@@ -119,7 +156,8 @@ function execute() {
 }
 
 execute();
-restart();
+
+// restart();
 // window.onload = () => {
 // 		console.log("dddsd");
     // HTMLElement el = document.getElementById('content');
