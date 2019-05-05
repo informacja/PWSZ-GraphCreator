@@ -29,6 +29,18 @@
 
 <body class="grey lighten-3">
 
+    <!-- Loading starts -->
+    <div class="loading-wrapper">
+        <div class="loading">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!-- Loading ends -->
+
   <!--Main Navigation-->
   <header>
 
@@ -52,8 +64,13 @@
                 <span class="sr-only">(current)</span>
               </a>
             </li>
-              <li class="nav-item active mx-1">
+            <li class="nav-item active mx-1">
               <a class="nav-link waves-effect" href='https://regex101.com/r/ZfEk8C/2'>js regex
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item active mx-1">
+              <a class="nav-link waves-effect" href='https://mdbootstrap.com/snippets/jquery/adamjakubowski/632230'>Przykłady nawigacji
                 <span class="sr-only">(current)</span>
               </a>
             </li>
@@ -227,6 +244,10 @@
     var placeholder = 'Początek \mkoniec \nwaga \n  1 2 3';
     $('textarea_in').attr('value', placeholder);
 
+    // Loading hide - show content
+    $(function() {
+    $(".loading-wrapper").fadeOut(500);
+    });
 
   </script>
   <!-- Biblioteka graficzna -->
@@ -241,9 +262,10 @@
   <script src="bellman-ford-spec.js"></script>
 <!--   Wprowadzanie danych i algorytm bellmana-forda-->
   <script src="src/main.js"> // regex, bellman-ford </script>
+
+
   <!-- Numery lini w text area -->
   <script type="text/javascript" src="./js/tln.js"></script>
-
 
 </body>
 
