@@ -7,17 +7,30 @@ let info_success = document.getElementById('array_of_success');
 let info_warning = document.getElementById('array_of_warning');
 let alert_area = document.getElementById('alert_lines');
 var wg_match;
-var wg_match1;
+var wg_numbers = Array();
+function wg2nubers() {
+    let nums = Array();
+    if (wg_match === null)
+        return nums;
+    for (let str of wg_match) {
+        var numbers = str.match(/\d+\.*\d*/g).map(Number);
+        nums.push(numbers);
+    }
+    wg_numbers = nums;
+    console.log(wg_numbers);
+    return nums;
+}
 function load_input() {
     let OriginalString = text_area.value;
-    let weigth_graph = new RegExp(/(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*/mig);
+    let weigth_graph = new RegExp(/^(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*$/mig);
     let empty_line = new RegExp(/^\s*$/mig);
     let em_l = empty_line[Symbol.match](OriginalString);
     let num_of_empty = 0;
     if (em_l !== null)
         num_of_empty = em_l.length;
     wg_match = weigth_graph[Symbol.match](OriginalString);
-    wg_match1 = wg_match.isPrototypeOf(1);
+    wg2nubers();
+    console.info("wg_numbers: " + wg_numbers);
     let count_of_match = 0;
     if (wg_match !== null)
         count_of_match = wg_match.length;
@@ -35,8 +48,7 @@ function load_input() {
         info_warning.innerText = "";
     }
     info_success.innerText = count_of_match.toString();
-    al.innerHTML = wg_match.toString();
-    console.debug(wg_match.toString().replace('.', '\n'));
+    al.innerHTML = wg_match.toLocaleString().replace(/,/g, '<br>');
 }
 function removeDups(names) {
     let unique = {};
@@ -48,42 +60,39 @@ function removeDups(names) {
     return Object.keys(unique);
 }
 function num_of_vertex() {
-    let graph_ids = Array("");
+    let graph_ids = Array();
     let i = 0;
-    for (let a of wg_match) {
-        a = a.match("\d");
-        console.debug(a);
+    for (let a of wg_numbers) {
         graph_ids[i++] = a[0];
         graph_ids[i++] = a[1];
     }
-    console.debug("sum of vertex: " + graph_ids);
+    console.debug("All vertex: " + graph_ids);
     let unique = removeDups(graph_ids);
-    console.debug("unique of vertex: " + unique);
+    console.debug("Unique of vertex: " + unique);
     return unique;
 }
 function draw_graph() {
-    links = Array(null);
+    links = [];
+    nodes = [];
+    nodes.length = 0;
+    while (nodes.length > 0) {
+        nodes.pop();
+    }
+    nodes.splice(0, nodes.length);
+    console.warn(nodes);
+    lastNodeId = 0;
     var arr = num_of_vertex();
-    console.log(arr);
-    nodes = [
-        { id: 0, reflexive: false },
-        { id: 1, reflexive: true },
-        { id: 2, reflexive: true },
-        { id: 3, reflexive: true },
-        { id: 4, reflexive: false }
-    ];
+    if (arr !== null)
+        lastNodeId = Number(arr[arr.length - 1]);
     let i = 0;
-    for (let a of wg_match) {
-        a = a.split(" ");
-        links[i++] = { source: nodes[a[0]], target: nodes[a[1]], left: false, right: true };
+    for (let a of arr) {
+        nodes[i++] = { id: Number(a), reflexive: true };
     }
     i = 0;
     for (let a of wg_match) {
         a = a.split(" ");
         links[i++] = { source: nodes[a[0]], target: nodes[a[1]], left: false, right: true };
     }
-    console.debug(nodes);
-    console.debug(links);
 }
 function execute() {
     load_input();
