@@ -216,5 +216,4 @@ execute();
 // console.log(g.adj(0)); // display the adjacency list which are directed edges from vertex 0
 
 
-
 // npm run start
