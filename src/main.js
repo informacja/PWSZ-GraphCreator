@@ -100,6 +100,7 @@ function execute() {
     restart();
 }
 execute();
+var g = new jsgraphs.WeightedDiGraph(8);
 var jsgraphs = jsgraphs || {};
 (function (jss) {
     jss.less = function (a1, a2, compare) {

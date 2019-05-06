@@ -158,7 +158,7 @@
 6 2 0.4
 3 6 0.52
 6 0 0.58
-6 4 0.93 </textarea>
+6 4 0.93</textarea>
         </div>
       </div>
         <div id="debug-out" class=" pt-3">
@@ -282,13 +282,13 @@
     // Animations initialization
     new WOW().init();
 
-    var placeholder = 'Początek \mkoniec \nwaga \n  1 2 3';
-    $('textarea_in').attr('value', placeholder);
-
     // Loading hide - show content
     $(function() {
     $(".loading-wrapper").fadeOut(500);
     });
+
+    var placeholder = 'Początek \nkoniec \nwaga \n  1 2 3';
+    $('textarea_in').attr("placeholder", "placeholder").val("placeholder");
 
   </script>
   <!-- Biblioteka graficzna -->

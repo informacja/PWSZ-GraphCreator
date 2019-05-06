@@ -191,7 +191,7 @@ execute();
 
 // npm install js-graph-algorithms
 // var jsgraphs = require('js-graph-algorithms');
-// var g = new jsgraphs.WeightedDiGraph(8); // 8 is the number vertices in the graph
+var g = new jsgraphs.WeightedDiGraph(8); // 8 is the number vertices in the graph
 // g.addEdge(new jsgraphs.Edge(0, 7, 0.16));
 // g.addEdge(new jsgraphs.Edge(2, 3, 0.17));
 // g.addEdge(new jsgraphs.Edge(1, 7, 0.19));
