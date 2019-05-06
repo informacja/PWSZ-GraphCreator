@@ -11,7 +11,7 @@ lib -> js
 # Pliki projektu
 
 js/app.js 
-src/main.js
+src/input_parse_draw.js
 
 #How to use
 -------
