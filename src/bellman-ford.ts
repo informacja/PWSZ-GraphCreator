@@ -1,5 +1,6 @@
 var g:any, bf:any;
 
+
 function add_edges() {
     g = new jsgraphs.WeightedDiGraph(num_of_vertex().length);
     for (let n of wg_numbers) {
