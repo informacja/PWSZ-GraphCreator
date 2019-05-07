@@ -104,7 +104,26 @@ function draw_graph() {
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+if (Array.prototype.equals)
+    console.warn("Overriding existing Array.prototype.equals. Possible causes: New API defines the method, there's a framework conflict or you've got double inclusions in your code.");
+Array.prototype.equals = function (array) {
+    if (!array)
+        return false;
+    if (this.length != array.length)
+        return false;
+    for (var i = 0, l = this.length; i < l; i++) {
+        if (this[i] instanceof Array && array[i] instanceof Array) {
+            if (!this[i].equals(array[i]))
+                return false;
+        }
+        else if (this[i] != array[i]) {
+            return false;
+        }
+    }
+    return true;
+};
 var can_display;
+var last_wg = Array();
 function parse_draw(wait = 0) {
     return __awaiter(this, void 0, void 0, function* () {
         can_display = wait;
@@ -113,13 +132,17 @@ function parse_draw(wait = 0) {
             can_display--;
         }
         load_input();
+        if (last_wg.equals(wg_numbers))
+            return;
+        last_wg = wg_numbers;
         draw_graph();
         restart();
+        bellman_ford();
     });
 }
 parse_draw();
 document.getElementById("textarea_in").addEventListener("input", function () {
-    parse_draw(500);
+    parse_draw(300);
 }, false);
 var g, bf;
 function add_edges() {

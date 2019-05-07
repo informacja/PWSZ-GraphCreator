@@ -156,7 +156,38 @@ function draw_graph()
 function delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
 }
+// Warn if overriding existing method
+if(Array.prototype.equals)
+    console.warn("Overriding existing Array.prototype.equals. Possible causes: New API defines the method, there's a framework conflict or you've got double inclusions in your code.");
+// attach the .equals method to Array's prototype to call it on any array
+Array.prototype.equals = function (array) {
+    // if the other array is a falsy value, return
+    if (!array)
+        return false;
+
+    // compare lengths - can save a lot of time
+    if (this.length != array.length)
+        return false;
+
+    for (var i = 0, l=this.length; i < l; i++) {
+        // Check if we have nested arrays
+        if (this[i] instanceof Array && array[i] instanceof Array) {
+            // recurse into the nested arrays
+            if (!this[i].equals(array[i]))
+                return false;
+        }
+        else if (this[i] != array[i]) {
+            // Warning - two different object instances will never be equal: {x:20} != {x:20}
+            return false;
+        }
+    }
+    return true;
+}
+// Hide method from for-in loops
+// Object.defineProperty(Array.prototype, "equals", {enumerable: false});
+
 var can_display:number;
+var last_wg=Array();
 async function parse_draw( wait:number = 0) {
 
     can_display = wait;
@@ -167,15 +198,20 @@ async function parse_draw( wait:number = 0) {
     }
 
     load_input();
+
+    if(last_wg.equals(wg_numbers))      // prevent redundant refresh graph
+        return;
+    last_wg = wg_numbers;
+
     draw_graph();
     restart();
-    // bellman_ford();
+    bellman_ford();
 }
 
 parse_draw();
 
 document.getElementById("textarea_in").addEventListener("input", function () {
-    parse_draw(500);
+    parse_draw(300);
 }, false);
 
 
