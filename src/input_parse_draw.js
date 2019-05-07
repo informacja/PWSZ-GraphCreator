@@ -132,7 +132,7 @@ function parse_draw(wait = 0) {
             can_display--;
         }
         load_input();
-        if (last_wg.equals(wg_numbers))
+        if (last_wg.equals(wg_numbers) && wait)
             return;
         last_wg = wg_numbers;
         draw_graph();

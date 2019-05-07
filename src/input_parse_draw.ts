@@ -199,7 +199,7 @@ async function parse_draw( wait:number = 0) {
 
     load_input();
 
-    if(last_wg.equals(wg_numbers))      // prevent redundant refresh graph
+    if(last_wg.equals(wg_numbers) && wait)      // prevent redundant refresh graph on change
         return;
     last_wg = wg_numbers;
 
