@@ -1,3 +1,11 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 let debug = false;
 if (!debug)
     console.info = function (a) { return; };
@@ -17,7 +25,7 @@ function wg2nubers() {
         nums.push(numbers);
     }
     wg_numbers = nums;
-    console.log(wg_numbers);
+    console.info(wg_numbers);
     return nums;
 }
 function load_input() {
@@ -79,7 +87,6 @@ function draw_graph() {
         nodes.pop();
     }
     nodes.splice(0, nodes.length);
-    console.warn(nodes);
     lastNodeId = 0;
     var arr = num_of_vertex();
     if (arr !== null)
@@ -94,13 +101,26 @@ function draw_graph() {
         links[i++] = { source: nodes[a[0]], target: nodes[a[1]], left: false, right: true };
     }
 }
-function parse_draw() {
-    load_input();
-    draw_graph();
-    restart();
-    bellman_ford();
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+var can_display;
+function parse_draw(wait = 0) {
+    return __awaiter(this, void 0, void 0, function* () {
+        can_display = wait;
+        while (can_display > 0) {
+            yield delay(1);
+            can_display--;
+        }
+        load_input();
+        draw_graph();
+        restart();
+    });
 }
 parse_draw();
+document.getElementById("textarea_in").addEventListener("input", function () {
+    parse_draw(500);
+}, false);
 var g, bf;
 function add_edges() {
     g = new jsgraphs.WeightedDiGraph(num_of_vertex().length);

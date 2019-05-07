@@ -44,7 +44,7 @@ function wg2nubers():Array<number>
         nums.push(numbers);
     }
     wg_numbers = nums;
-    console.log(wg_numbers);
+    console.info(wg_numbers);
     return nums;
 }
 
@@ -124,7 +124,7 @@ function draw_graph()
     nodes.length = 0;
     while(nodes.length > 0) { nodes.pop(); }
     nodes.splice(0, nodes.length);
-    console.warn( nodes );
+    // console.warn( nodes );
     // restart();
 
     lastNodeId = 0;
@@ -153,14 +153,30 @@ function draw_graph()
     // console.info(links);
 }
 
-function parse_draw() {
+function delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+}
+var can_display:number;
+async function parse_draw( wait:number = 0) {
+
+    can_display = wait;
+    while(can_display > 0)
+    {
+        await delay(1);
+        can_display--;
+    }
+
     load_input();
     draw_graph();
     restart();
-    bellman_ford();
+    // bellman_ford();
 }
 
 parse_draw();
+
+document.getElementById("textarea_in").addEventListener("input", function () {
+    parse_draw(500);
+}, false);
 
 
 
