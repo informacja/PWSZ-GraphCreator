@@ -34,9 +34,6 @@
     display: inline-block;
     counter-reset: line;
 }
-div:nth-child(3n+0).tln-wrapper {
-    background: red;
-}
 
 .tln-line {
     width: 100%;

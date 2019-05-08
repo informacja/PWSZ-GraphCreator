@@ -1,0 +1,97 @@
+.hwt-container {
+	display: inline-block;
+	position: relative;
+	overflow: hidden !important;
+	-webkit-text-size-adjust: none !important;
+}
+
+.hwt-backdrop {
+	position: absolute !important;
+	/*position: fixed !important;*/
+	/*top: 0 !important;*/
+	/*right: -99px !important;*/
+	/*bottom: 0 !important;*/
+	/*left: 0 !important;*/
+	padding-right: 99px !important;
+	overflow-x: hidden !important;
+	overflow-y: auto !important;
+
+}
+
+.hwt-highlights {
+	width: auto !important;
+	height: auto !important;
+	border-color: transparent !important;
+	/*white-space: pre-wrap !important;*/
+	/*word-wrap: break-word !important;*/
+	color: transparent !important;
+	overflow: hidden !important;
+}
+
+.hwt-input {
+	display: block !important;
+	/*position: relative !important;*/
+	/*margin: 0;*/
+	/*padding: 0;*/
+	border-radius: 0;
+	font: inherit;
+	overflow-x: hidden !important;
+	overflow-y: auto !important;
+}
+
+.hwt-content {
+	border: 1px solid;
+	background: none transparent !important;
+}
+
+.hwt-content mark {
+	padding: 0 !important;
+	color: inherit;
+}
+
+.hwt-content {
+	/*width: 760px;*/
+	/*height: 100px;*/
+	padding: 20px;
+	/*border: 1px solid #adb5bd;*/
+	color: inherit;
+	/*font: 18px/25px 'Droid Sans Mono', sans-serif;*/
+}
+
+.hwt-input:focus {
+	outline-color: #495057;
+}
+
+.hwt-container {
+    /*background-color: #f8f9fa;*/
+}
+
+textarea#textarea_in {
+	/*width: 70%;*/
+    /*position: absolute;*/
+    /*display: block !important;*/
+    /*top: 0;*/
+    /*left: 0;*/
+	/*padding-left: 50px;*/
+	/*padding-top: 0;*/
+}
+textarea{
+    color: red;
+}
+
+/*.hwt-content mark {*/
+/*	border-radius: 3px;*/
+/*	background-color: #d0bfff;*/
+/*}*/
+
+/*.hwt-content mark.red {*/
+/*	background-color: #ffc9c9;*/
+/*}*/
+
+/*.hwt-content mark.blue {*/
+/*	background-color: #a3daff;*/
+/*}*/
+
+/*.hwt-content mark.yellow {*/
+/*	background-color: #ffec99;*/
+/*}*/
