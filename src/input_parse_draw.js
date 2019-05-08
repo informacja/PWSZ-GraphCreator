@@ -14,6 +14,8 @@ let out_debug = document.getElementById('textarea_out');
 let info_success = document.getElementById('array_of_success');
 let info_warning = document.getElementById('array_of_warning');
 let alert_area = document.getElementById('alert_lines');
+let weigth_graph = new RegExp(/^(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*$/mig);
+let empty_line = new RegExp(/^\s*$/mig);
 var wg_match;
 var wg_numbers = Array();
 function wg2nubers() {
@@ -28,10 +30,23 @@ function wg2nubers() {
     console.info(wg_numbers);
     return nums;
 }
+function colorize_line_numbers() {
+    var lines = text_area.value.split('\n');
+    for (var i = 0; i < lines.length; i++) {
+        if (weigth_graph.test(lines[i])) {
+            $("span.tln-line:nth-of-type(" + (i + 1) + ")").css("color", "limegreen");
+            console.log(i + ": " + lines[i + 1] + " " + weigth_graph.test(lines[i + 1]));
+        }
+        else if (empty_line.test(lines[i]) === true) {
+            $("span.tln-line:nth-of-type(" + (i + 1) + ")").css("color", "gray");
+        }
+        else {
+            $("span.tln-line:nth-of-type(" + (i + 1) + ")").css("color", "red");
+        }
+    }
+}
 function load_input() {
     let OriginalString = text_area.value;
-    let weigth_graph = new RegExp(/^(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*$/mig);
-    let empty_line = new RegExp(/^\s*$/mig);
     let em_l = empty_line[Symbol.match](OriginalString);
     let num_of_empty = 0;
     if (em_l !== null)
@@ -126,6 +141,7 @@ var can_display;
 var last_wg = Array();
 function parse_draw(wait = 0) {
     return __awaiter(this, void 0, void 0, function* () {
+        colorize_line_numbers();
         can_display = wait;
         while (can_display > 0) {
             yield delay(1);
@@ -144,7 +160,8 @@ parse_draw();
 document.getElementById("textarea_in").addEventListener("input", function () {
     parse_draw(300);
 }, false);
-var g, bf;
+var g, bf, way;
+way = Array();
 function add_edges() {
     g = new jsgraphs.WeightedDiGraph(num_of_vertex().length);
     for (let n of wg_numbers) {
@@ -152,6 +169,7 @@ function add_edges() {
     }
 }
 function main_algorithm() {
+    way = [];
     var edgeCount = 0;
     for (var v = 0; v < g.V; ++v) {
         var adj_v = g.adj(v);
@@ -168,6 +186,7 @@ function main_algorithm() {
                 console.log(e.from() + ' => ' + e.to() + ': ' + e.weight);
                 if (v == (g.V - 1)) {
                     out_debug.innerHTML += e.from() + ' -> ' + e.to() + ': ' + e.weight + "<br>";
+                    way.push(e.from(), e.to());
                 }
             }
             if (true && v == (g.V - 1)) {

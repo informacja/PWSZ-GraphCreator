@@ -29,6 +29,9 @@ let info_success = document.getElementById('array_of_success');
 let info_warning = document.getElementById('array_of_warning');
 let alert_area = document.getElementById('alert_lines');
 
+let weigth_graph:RegExp = new RegExp(/^(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*$/mig);// one line
+let empty_line:RegExp = new RegExp(/^\s*$/mig);
+
 var wg_match:any;
 var wg_numbers:Array<number> = Array();
 
@@ -48,12 +51,25 @@ function wg2nubers():Array<number>
     return nums;
 }
 
+function colorize_line_numbers() {
+    var lines = text_area.value.split('\n');
+    for(var i:number = 0; i < lines.length; i++) {
+        //code here using lines[i] which will give you each line
+        if ( weigth_graph.test(lines[i]) ) {
+            $("span.tln-line:nth-of-type(" + (i+1) + ")").css("color", "limegreen");
+            console.log(i + ": " + lines[i + 1] + " " + weigth_graph.test(lines[i + 1]));
+        } else if ( empty_line.test(lines[i]) === true ){
+            $("span.tln-line:nth-of-type(" + (i+1) + ")").css("color", "gray");
+        }else {
+            $("span.tln-line:nth-of-type(" + (i+1) + ")").css("color", "red");
+        }
+    }
+}
+
 function load_input()
 {
     let OriginalString:string = text_area.value;
     // let weigth_graph = new RegExp(/(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*/mig);
-    let weigth_graph = new RegExp(/^(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*$/mig);// one line
-    let empty_line = new RegExp(/^\s*$/mig);
 
     let em_l = empty_line[Symbol.match](OriginalString);
     let num_of_empty: number = 0;
@@ -183,12 +199,12 @@ Array.prototype.equals = function (array) {
     }
     return true;
 }
-// Hide method from for-in loops
-// Object.defineProperty(Array.prototype, "equals", {enumerable: false});
 
 var can_display:number;
 var last_wg=Array();
 async function parse_draw( wait:number = 0) {
+
+    colorize_line_numbers();
 
     can_display = wait;
     while(can_display > 0)
@@ -214,7 +230,49 @@ document.getElementById("textarea_in").addEventListener("input", function () {
     parse_draw(300);
 }, false);
 
+// $('.class-example').highlightWithinTextarea({
+//     highlight: [
+//         {
+//             highlight: 'strawberry',
+//             className: 'red'
+//         },
+//         {
+//             highlight: 'blueberry',
+//             className: 'blue'
+//         },
+//         {
+//             highlight: /ba(na)*/gi,
+//             className: 'yellow'
+//         }
+//     ]
+// });
 
+// let weigth_graph = new RegExp(/^(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*$/mig);// one line
+// let empty_line = new RegExp(/^\s*$/mig);
+
+
+// $('#textarea_in').highlightWithinTextarea({
+//     highlight: [
+//         {
+//             highlight: /^(\\d+\\s+\\d+\\s+(?:(?:\\d+\\.\\d+)|\\d+))(?:\\.[\\S\\d]+)*$/mig,
+//             className: 'yellow'
+//         },
+//         {
+//             highlight: 'blueberry',
+//             className: 'blue'
+//         },
+//         {
+//             highlight: /ba(na)*/gi,
+//             className: 'yellow'
+//         }
+//     ]
+// });
+
+
+
+// $(document).ready(function(){
+//     $("span.tln-line:nth-of-type(4)").css("background-color", "yellow");
+// });
 
 // npm install js-graph-algorithms
 // var jsgraphs = require('js-graph-algorithms');

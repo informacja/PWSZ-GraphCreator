@@ -1,5 +1,5 @@
-var g:any, bf:any;
-
+var g:any, bf:any, way:Array<number>;
+way = Array();
 
 function add_edges() {
     g = new jsgraphs.WeightedDiGraph(num_of_vertex().length);
@@ -30,6 +30,7 @@ function add_edges() {
 // expect(g.V).to.equal(8);
 function main_algorithm() {
 
+    way = [];                               // empty array
     var edgeCount = 0;
     for (var v = 0; v < g.V; ++v) {
         var adj_v = g.adj(v);
@@ -48,6 +49,7 @@ function main_algorithm() {
                 console.log(e.from() + ' => ' + e.to() + ': ' + e.weight);
                 if (v == (g.V - 1)) {
                     out_debug.innerHTML += e.from() + ' -> ' + e.to() + ': ' + e.weight+"<br>";
+                    way.push( e.from(), e.to() );
                 }
             }
             if(true && v == (g.V-1)) {

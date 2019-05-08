@@ -6,8 +6,8 @@ const browserSync = require('browser-sync').create();
 const concat = require('gulp-concat');
 const minify = require('gulp-minify');
 const rename = require('gulp-rename');
-const imagemin = require('gulp-imagemin');
-const fs = require('fs');
+// const imagemin = require('gulp-imagemin');
+ const fs = require('fs');
 
 const cssAddonsPath = './css/modules/';
 
@@ -38,19 +38,19 @@ gulp.task('css-compile-modules', function() {
 
 
 gulp.task('css-minify', function() {
-    gulp.src(['./dist/css/*.css', '!./dist/css/*.min.css', '!./dist/css/bootstrap.css'])
+    gulp.src(['./css/*.css', '!./css/*.min.css', '!./css/bootstrap.css'])
       .pipe(cssmin())
       .pipe(rename({suffix: '.min'}))
-      .pipe(gulp.dest('./dist/css'));
+      .pipe(gulp.dest('./css'));
 
     gulp.start('css-minify-modules');
 });
 
 gulp.task('css-minify-modules', function() {
-  gulp.src(['./dist/css/modules/*.css', '!./dist/css/modules/*.min.css'])
+  gulp.src(['./css/modules/*.css', '!./css/modules/*.min.css'])
     .pipe(cssmin())
     .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest('./dist/css/modules'));
+    .pipe(gulp.dest('./css/modules'));
 });
 
 // JavaScript Tasks
@@ -100,13 +100,14 @@ gulp.task('img-compression', function() {
 gulp.task('live-server', function() {
   browserSync.init({
     server: {
-      baseDir: "./dist",
+      baseDir: "./",
       directory: true
     },
     notify: false
   });
 
-  gulp.watch("**/*", {cwd: './dist/'}, browserSync.reload);
+  gulp.watch("**/*", {cwd: 'index.html'}, browserSync.reload);
+  gulp.watch("index.html", {cwd: 'index.html'}, browserSync.reload);
 });
 
 // Watch on everything
@@ -114,9 +115,10 @@ gulp.task('mdb-go', function() {
   gulp.start('live-server');
   gulp.watch("scss/**/*.scss", ['css-compile']);
   gulp.watch(["dist/css/*.css", "!dist/css/*.min.css"], ['css-minify']);
+  gulp.watch(["css/*.css", "!/css/*.min.css"], ['css-minify']);             // copy
   gulp.watch("js/**/*.js", ['js-build']);
   gulp.watch(["dist/js/*.js", "!dist/js/*.min.js"], ['js-minify']);
-  gulp.watch("**/*", {cwd: './img/'}, ['img-compression']);
+  // gulp.watch("**/*", {cwd: './img/'}, ['img-compression']);
 });
 
 function getJSModules() {
