@@ -43,6 +43,7 @@ function wg2nubers():Array<number>
 
     for( let str of wg_match)
     {
+        str = str.trim();
         var numbers = str.match(/\d+\.*\d*/g).map(Number);
         nums.push(numbers);
     }
@@ -55,10 +56,10 @@ function colorize_line_numbers() {
     var lines = text_area.value.split('\n');
     for(var i:number = 0; i < lines.length; i++) {
         //code here using lines[i] which will give you each line
-        if ( weigth_graph.test(lines[i]) ) {
+        if ( weigth_graph.test(lines[i].trim()) ) {
             $("span.tln-line:nth-of-type(" + (i+1) + ")").css("color", "limegreen");
             console.log(i + ": " + lines[i + 1] + " " + weigth_graph.test(lines[i + 1]));
-        } else if ( empty_line.test(lines[i]) === true ){
+        } else if ( empty_line.test(lines[i].trim()) ){
             $("span.tln-line:nth-of-type(" + (i+1) + ")").css("color", "gray");
         }else {
             $("span.tln-line:nth-of-type(" + (i+1) + ")").css("color", "red");

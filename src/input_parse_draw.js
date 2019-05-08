@@ -23,6 +23,7 @@ function wg2nubers() {
     if (wg_match === null)
         return nums;
     for (let str of wg_match) {
+        str = str.trim();
         var numbers = str.match(/\d+\.*\d*/g).map(Number);
         nums.push(numbers);
     }
@@ -33,11 +34,11 @@ function wg2nubers() {
 function colorize_line_numbers() {
     var lines = text_area.value.split('\n');
     for (var i = 0; i < lines.length; i++) {
-        if (weigth_graph.test(lines[i])) {
+        if (weigth_graph.test(lines[i].trim())) {
             $("span.tln-line:nth-of-type(" + (i + 1) + ")").css("color", "limegreen");
             console.log(i + ": " + lines[i + 1] + " " + weigth_graph.test(lines[i + 1]));
         }
-        else if (empty_line.test(lines[i]) === true) {
+        else if (empty_line.test(lines[i].trim())) {
             $("span.tln-line:nth-of-type(" + (i + 1) + ")").css("color", "gray");
         }
         else {
@@ -181,6 +182,9 @@ function main_algorithm() {
         if (bf.hasPathTo(v)) {
             var pathT = bf.pathTo(v);
             console.log('=====path from 0 to ' + v + ' start==========');
+            if (true && v == (g.V - 1)) {
+                out_debug.innerHTML += "Najlepsza droga (min):<br> ";
+            }
             for (var i = 0; i < pathT.length; ++i) {
                 var e = pathT[i];
                 console.log(e.from() + ' => ' + e.to() + ': ' + e.weight);

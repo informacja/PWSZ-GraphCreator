@@ -44,6 +44,9 @@ function main_algorithm() {
         if (bf.hasPathTo(v)) {
             var pathT = bf.pathTo(v);
             console.log('=====path from 0 to ' + v + ' start==========');
+            if(true && v == (g.V-1)) {
+                out_debug.innerHTML += "Najlepsza droga (min):<br> ";
+            }
             for (var i = 0; i < pathT.length; ++i) {
                 var e = pathT[i];
                 console.log(e.from() + ' => ' + e.to() + ': ' + e.weight);
