@@ -96,14 +96,9 @@ function num_of_vertex() {
     return unique;
 }
 function draw_graph() {
-    links = [];
+    lastNodeId = -1;
     nodes = [];
-    nodes.length = 0;
-    while (nodes.length > 0) {
-        nodes.pop();
-    }
-    nodes.splice(0, nodes.length);
-    lastNodeId = 0;
+    links = [];
     var arr = num_of_vertex();
     if (arr !== null)
         lastNodeId = Number(arr[arr.length - 1]);
@@ -161,6 +156,51 @@ parse_draw();
 document.getElementById("textarea_in").addEventListener("input", function () {
     parse_draw(300);
 }, false);
+this.getModelString = function () {
+    var modelString = '';
+    _states.forEach(function (state) {
+        if (state) {
+            modelString += 'A' + Object.keys(state.assignment).join();
+            modelString += 'S' + state.successors.join();
+        }
+        modelString += ';';
+    });
+    return modelString;
+};
+function showLinkDialog() {
+    linkInputElem.value = 'http://rkirsling.github.com/modallogic/?model=' + model.getModelString();
+    backdrop.classed('inactive', false);
+    setTimeout(function () { backdrop.classed('in', true); linkDialog.classed('inactive', false); }, 0);
+    setTimeout(function () { linkDialog.classed('in', true); }, 150);
+}
+this.loadFromModelString = function (modelString) {
+    var regex = /^(?:;|(?:A|A(?:\w+,)*\w+)(?:S|S(?:\d+,)*\d+);)+$/;
+    if (!regex.test(modelString))
+        return;
+    _states = [];
+    var self = this, successorLists = [], inputStates = modelString.split(';').slice(0, -1);
+    inputStates.forEach(function (state) {
+        if (!state) {
+            _states.push(null);
+            successorLists.push(null);
+            return;
+        }
+        var stateProperties = state.match(/A(.*)S(.*)/).slice(1, 3)
+            .map(function (substr) { return (substr ? substr.split(',') : []); });
+        var assignment = {};
+        stateProperties[0].forEach(function (propvar) { assignment[propvar] = true; });
+        _states.push({ assignment: assignment, successors: [] });
+        var successors = stateProperties[1].map(function (succState) { return +succState; });
+        successorLists.push(successors);
+    });
+    successorLists.forEach(function (successors, source) {
+        if (!successors)
+            return;
+        successors.forEach(function (target) {
+            self.addTransition(source, target);
+        });
+    });
+};
 var g, bf, way;
 way = Array();
 function add_edges() {
