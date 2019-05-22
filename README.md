@@ -1,5 +1,7 @@
 # <a href="https://informacja.github.io/PWSZ-GraphCreator/">PWSZ-GraphCreator</a>
 
+<img style="display: inlinie;" src="/img/new.png"> </img>
+
 index.html
 <img style="display: inlinie;" src="/img/mdb.png"> </img>
 
