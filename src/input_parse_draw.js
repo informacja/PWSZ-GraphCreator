@@ -262,11 +262,10 @@ function bellman_ford() {
 }
 function find_road(arr) {
     var n = arr.length;
-    var Road = "";
+    road = [];
     for (i = 0; i < n; i++) {
-        Road.push(links.filter(p => p.source.id == i && p.target.id == i + 1)[0]);
         i++;
     }
-    return Road;
+    return road;
 }
 //# sourceMappingURL=input_parse_draw.js.map

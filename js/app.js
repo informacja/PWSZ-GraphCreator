@@ -21,14 +21,11 @@ let mousedownLink = null;
 let mousedownNode = null;
 let mouseupNode = null;
 
-
 function resetMouseVars() {
   mousedownNode = null;
   mouseupNode = null;
   mousedownLink = null;
 }
-
-let gravityStatus = true;
 
 //Switch Gravity
 function switchGravity(status) {
@@ -47,8 +44,12 @@ function switchGravity(status) {
       .on('tick', tick);
   }
 }
+
+
+let gravityStatus = true;
+
 // init D3 force layout
-var force = switchGravity(true);
+var force = switchGravity(gravityStatus);
 
 //Responsive module
 $(window).resize(function () {

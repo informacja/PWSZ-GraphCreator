@@ -137,18 +137,10 @@ function num_of_vertex():Array<string>
 function draw_graph()
 {
     links = []; // clear array
-    nodes = []; // clear array
+    nodes = [];
     road  = [];
-    // nodes.length = 0;
-    // while(nodes.length > 0) { nodes.pop(); }
-    // nodes.splice(0, nodes.length);
-    // console.warn( nodes );
-    // restart();
 
     lastNodeId = nodes.length - 1;
-
-    // jak wyzerować?
-    // console.info ("links: " + links);
 
     var arr = num_of_vertex();
 
@@ -230,6 +222,7 @@ async function parse_draw( wait:number = 0) {
     restart()
     // update_road();
     // kolorowanie drogi
+    // d3.select('#app-main').dispatch('click');
 }
 
 parse_draw();
@@ -300,7 +293,7 @@ this.loadFromModelString = function (modelString) {
         });
     });
 };
-}
+
 
 // $('.class-example').highlightWithinTextarea({
 //     highlight: [

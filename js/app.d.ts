@@ -19,7 +19,9 @@ declare var links: {
     };
     left: boolean;
     right: boolean;
+    weight: number;
 }[];
+declare var road: { linkId:number }[];
 declare const drag: any;
 declare const dragLine: any;
 declare let path: any;
