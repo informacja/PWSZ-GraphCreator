@@ -1,41 +1,41 @@
 
 
 body, html {
-    height: 100%;
-    margin: 0;
-    background-image: linear-gradient(to right, #ff4b1f 0%, #1fddff 100%);
-  }
-  
-div#app {
-    position: relative;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: red;
-    width: 100%;
-  }
-div#app, div#app-main{
-    height: 100% !important;
-  }
-div#app-main{
-  }
+  height: 100%;
+  margin: 0;
+  background-image: linear-gradient(to right, #ff4b1f 0%, #1fddff 100%);
+}
 
-  .btn-circle.btn-xl {
-    width: 70px;
-    height: 70px;
-    padding: 10px 16px;
-    border-radius: 35px;
-    font-size: 24px;
-    line-height: 1.33;
+div#app {
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: red;
+  width: 100%;
+}
+div#app, div#app-main{
+  height: 100% !important;
+}
+div#app-main{
+}
+
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  border-radius: 35px;
+  font-size: 24px;
+  line-height: 1.33;
 }
 
 .btn-circle {
-    width: 30px;
-    height: 30px;
-    padding: 6px 0px !important;
-    border-radius: 100% !important;
-    text-align: center ;
-    font-size: 12px;
-    line-height: 1.42857;
+  width: 30px;
+  height: 30px;
+  padding: 6px 0px !important;
+  border-radius: 100% !important;
+  text-align: center ;
+  font-size: 12px;
+  line-height: 1.42857;
 }
 

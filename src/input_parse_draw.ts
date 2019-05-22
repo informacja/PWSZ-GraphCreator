@@ -136,11 +136,16 @@ function num_of_vertex():Array<string>
 
 function draw_graph()
 {
-
-    lastNodeId = -1;
-    nodes = []; // clear array
     links = []; // clear array
+    nodes = []; // clear array
+    road  = [];
+    // nodes.length = 0;
+    // while(nodes.length > 0) { nodes.pop(); }
+    // nodes.splice(0, nodes.length);
+    // console.warn( nodes );
+    // restart();
 
+    lastNodeId = nodes.length - 1;
 
     // jak wyzerować?
     // console.info ("links: " + links);
@@ -160,7 +165,9 @@ function draw_graph()
     for( let a of wg_match )
     {
         a = a.split(" ");
-        links[i++] =  { source: nodes[a[0]], target: nodes[a[1]], left: false, right: true } ;
+        links[i++] =  { source: nodes[a[0]], target: nodes[a[1]], left: false, right: true, weight: a[2] } ;
+        // wagi
+
     }
     // console.info(nodes);
     // console.info(links);
@@ -217,8 +224,12 @@ async function parse_draw( wait:number = 0) {
     last_wg = wg_numbers;
 
     draw_graph();
-    restart();
+    // restart();
     bellman_ford();
+    find_road(way);
+    restart()
+    // update_road();
+    // kolorowanie drogi
 }
 
 parse_draw();
@@ -331,17 +342,3 @@ this.loadFromModelString = function (modelString) {
 
 
 
-// $(document).ready(function(){
-//     $("span.tln-line:nth-of-type(4)").css("background-color", "yellow");
-// });
-
-// npm install js-graph-algorithms
-// var jsgraphs = require('js-graph-algorithms');
-// g.node(2).label = 'Hello';
-// g.edge(4, 5).label = 'World'; // edge from node 4 to node 5
-//
-// console.log(g.V); // display 13, which is the number of vertices in g
-// console.log(g.adj(0)); // display the adjacency list which are directed edges from vertex 0
-
-
-// npm run start

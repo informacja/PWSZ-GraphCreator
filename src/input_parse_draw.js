@@ -96,9 +96,10 @@ function num_of_vertex() {
     return unique;
 }
 function draw_graph() {
-    lastNodeId = -1;
-    nodes = [];
     links = [];
+    nodes = [];
+    road = [];
+    lastNodeId = nodes.length - 1;
     var arr = num_of_vertex();
     if (arr !== null)
         lastNodeId = Number(arr[arr.length - 1]);
@@ -109,7 +110,7 @@ function draw_graph() {
     i = 0;
     for (let a of wg_match) {
         a = a.split(" ");
-        links[i++] = { source: nodes[a[0]], target: nodes[a[1]], left: false, right: true };
+        links[i++] = { source: nodes[a[0]], target: nodes[a[1]], left: false, right: true, weight: a[2] };
     }
 }
 function delay(ms) {
@@ -148,8 +149,9 @@ function parse_draw(wait = 0) {
             return;
         last_wg = wg_numbers;
         draw_graph();
-        restart();
         bellman_ford();
+        find_road(way);
+        restart();
     });
 }
 parse_draw();
@@ -257,5 +259,14 @@ function show_results() {
 function bellman_ford() {
     add_edges();
     main_algorithm();
+}
+function find_road(arr) {
+    var n = arr.length;
+    var Road = "";
+    for (i = 0; i < n; i++) {
+        Road.push(links.filter(p => p.source.id == i && p.target.id == i + 1)[0]);
+        i++;
+    }
+    return Road;
 }
 //# sourceMappingURL=input_parse_draw.js.map

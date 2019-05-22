@@ -52,11 +52,15 @@
           <span class="navbar-toggler-icon"></span>
         </button>
               <!--Dropdown primary-->
-              <div class="dropdown navbar-toggler d-inline-flex m-auto ml-0" style="margin-left: 0!important" >
+              <div class="dropdown navbar-toggler d-inline-flex m-auto ml-0 animated fadeInLeft" style="margin-left: 0!important" >
                   <!--Trigger-->
                   <a  type="button" id="dropdownMenu2" data-toggle="dropdown"
-                      aria-haspopup="true" aria-expanded="false" style="-webkit-appearance: none;">
-                      <i class="fas fa-ellipsis-v" ></i>&nbsp;&nbsp;ToDo
+                      aria-haspopup="true" aria-expanded="false" style="-webkit-appearance: none;">         
+                      <i class="fas fa-ellipsis-v" style="align-self: center;"></i>        
+                      <a class="nav-link pt-0 " style="color: black" href='https://www.programiz.com/dsa/bellman-ford-algorithm'> 
+                        <span>Algorytm Bellmana-Forda</span> 
+                        <span class="sr-only">(current)</span>
+                      </a>
                   </a>
                   <!-- Dropdown linków: Todo list -->
                   <div class="dropdown-menu dropdown-primary">
@@ -75,6 +79,21 @@
                           Całkowicie zrezygnować z wprowadzania myszką
                       <br>
                       </tt>
+                      <li class="nav-item active mx-1">
+                        <a class="nav-link waves-effect" href='https://www.programiz.com/dsa/bellman-ford-algorithm'>Bellman-Ford<i class="fas fa-calculator-alt"></i>
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active mx-1">
+                        <a class="nav-link waves-effect" href='https://pythex.org/?regex=(%5Cd%2B%5Cs%2B%5Cd%2B%5Cs%2B(%3F%3A(%3F%3A%5Cd%2B%5C.%5Cd%2B)%7C%5Cd%2B))(%3F%3A%5C.%5B%5CS%5Cd%5D%2B)*&test_string=015%20%2031%20333.33.4error4%0A4%2046%204%205%204%0A4%20%20034%2035%0A4444%20%20%0A5%204%205.5%201%20(%3F<!%5C.)%5Cd%2B%20(%3F<!%20znak)%20oznacza%2C%20wcześniej%20"<"%20nie%20jest%20"!"%20znak&ignorecase=0&multiline=0&dotall=0&verbose=1%20">%20reg</a>'>pythex
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                  <li class="nav-item active mx-1">
+                    <a class="nav-link waves-effect" href='https://regex101.com/r/ZfEk8C/2'>js regex
+                      <span class="sr-only">(current)</span>
+                    </a>
+                  </li>
                   </div>
               </div>
         <!-- Links -->
@@ -82,21 +101,7 @@
 
           <!-- Left -->
           <ul class="navbar-nav mr-auto">
-              <li class="nav-item active mx-1">
-                  <a class="nav-link waves-effect" href='https://www.programiz.com/dsa/bellman-ford-algorithm'>Bellman-Ford<i class="fas fa-calculator-alt"></i>
-                      <span class="sr-only">(current)</span>
-                  </a>
-              </li>
-              <li class="nav-item active mx-1">
-                  <a class="nav-link waves-effect" href='https://pythex.org/?regex=(%5Cd%2B%5Cs%2B%5Cd%2B%5Cs%2B(%3F%3A(%3F%3A%5Cd%2B%5C.%5Cd%2B)%7C%5Cd%2B))(%3F%3A%5C.%5B%5CS%5Cd%5D%2B)*&test_string=015%20%2031%20333.33.4error4%0A4%2046%204%205%204%0A4%20%20034%2035%0A4444%20%20%0A5%204%205.5%201%20(%3F<!%5C.)%5Cd%2B%20(%3F<!%20znak)%20oznacza%2C%20wcześniej%20"<"%20nie%20jest%20"!"%20znak&ignorecase=0&multiline=0&dotall=0&verbose=1%20">%20reg</a>'>pythex
-                      <span class="sr-only">(current)</span>
-                  </a>
-              </li>
-            <li class="nav-item active mx-1">
-              <a class="nav-link waves-effect" href='https://regex101.com/r/ZfEk8C/2'>js regex
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
+
           </ul>
 
           <!-- Right -->
@@ -134,12 +139,12 @@
           <div>
         <!-- Warpper for line nubers -->
         <div id="wrapper" class="form-control z-depth-1">
-          <textarea class="" id="textarea_in" rows="12" placeholder="Wprowadź">
+
+          <textarea class="" id="textarea_in" rows="12"
+                  placeholder="Wprowadź">
 0 7 0.16
-banana
 0 2 0.26
 4 7 0.37
-
 2 3 0.17
 2 7 0.34
 1 7 0.19
@@ -156,6 +161,8 @@ banana
         </div>
         </div>
       </div>
+
+<!--           <textarea class="class-example">Here's a blueberry. There's a strawberry. Surprise, it's a banananana!</textarea>-->
 
         <div id="debug-out" class=" pt-3">
           <div class="alert alert-light" role="alert" id="textarea_out">
@@ -222,16 +229,7 @@ banana
                 <div id="app-main" class="col-md-9 d-sm-flex m-auto card mr-5" style="height: 62vh; // doprzeniesiena_co_css ">
 
                 </div>
-                <!-- Przyciski edycji -->
-                <div id="app-panel" class="col-md-3 d-inline">
-                    <div class="row">
-                      <button type="button" class="btn btn-primary btn-lg ">Tryb Usuwania</button>
-                      <button type="button" class="btn btn-primary btn-lg">Tryb Przenoszenia</button>
-                      <button type="button" class="btn btn-primary btn-lg">Tryb Edytowania</button>
-                      <button type="button" class="btn btn-primary btn-lg">Tryb Dodawania</button>
-<!--                      <button type="button" class="btn btn-primary btn-lg">Tryb Pusty</button>-->
-                    </div>
-                </div>
+ 
             </div>
         </div>
         <!-- Grid row-->
@@ -314,10 +312,11 @@ banana
 <!--  <script src="third-party-libs/vis/vis.js" type="text/javascript"></script>-->
   <script src="src/jsgraphs.js"></script>
   <script src="js/modules/chart.js"></script>
-<!--  <script src="bellman-ford-spec.js"></script>-->
-<!--   Wprowadzanie danych i algorytm bellmana-forda-->
+  <!--  <script src="bellman-ford-spec.js"></script>-->
+    <!--    Kolorowanie najkrotszej drogi -->
+  <script src="js/find_road.js"> // regex, bellman-ford </script>
+  <!--   Wprowadzanie danych i algorytm bellmana-forda-->
   <script src="src/input_parse_draw.js"> // regex, bellman-ford </script>
-
 
   </body>
 
