@@ -5,7 +5,6 @@ function add_edges() {
     g = new jsgraphs.WeightedDiGraph(num_of_vertex().length);
     for (let n of wg_numbers) {
         g.addEdge(new jsgraphs.Edge(n[0], n[1], n[2]));
-
     }
 }
 //
@@ -27,6 +26,10 @@ function add_edges() {
 // g.addEdge(new jsgraphs.Edge(6, 0, 0.58));
 // g.addEdge(new jsgraphs.Edge(6, 4, 0.93));
 
+// if (!debug)
+//     console.log = function(a:any) { return; };  // easy trick, to disable debug
+
+
 // expect(g.V).to.equal(8);
 function main_algorithm() {
 
@@ -43,23 +46,24 @@ function main_algorithm() {
     for (var v = 1; v < g.V; ++v) {
         if (bf.hasPathTo(v)) {
             var pathT = bf.pathTo(v);
-            console.log('=====path from 0 to ' + v + ' start==========');
+            // console.log('=====path from 0 to ' + v + ' start==========');
             if(true && v == (g.V-1)) {
                 out_debug.innerHTML += "Najlepsza droga (min):<br> ";
             }
             for (var i = 0; i < pathT.length; ++i) {
                 var e = pathT[i];
-                console.log(e.from() + ' => ' + e.to() + ': ' + e.weight);
+                // console.log(e.from() + ' => ' + e.to() + ': ' + e.weight);
                 if (v == (g.V - 1)) {
                     out_debug.innerHTML += e.from() + ' -> ' + e.to() + ': ' + e.weight+"<br>";
                     way.push( e.from(), e.to() );
+                    console.log(e.from() + ' => ' + e.to() + ': ' + e.weight);
                 }
             }
             if(true && v == (g.V-1)) {
                 out_debug.innerHTML += "Koszt: " + Number(bf.distanceTo(v));
             }
-            console.log('=====path from 0 to ' + v + ' end==========');
-            console.log('=====distance: ' + bf.distanceTo(v) + '=========');
+            // console.log('=====path from 0 to ' + v + ' end==========');
+            // console.log('=====distance: ' + bf.distanceTo(v) + '=========');
 
                 // out_debug.innerHTML = "Best: " + bf.edgeTo[min_index].v + " -> " + bf.edgeTo[min_index].w + " <br>weight: " + bf.edgeTo[min_index].weight;
 
@@ -82,7 +86,6 @@ function show_results() {
 
     out_debug.innerHTML = "Best: " + bf.edgeTo[min_index].v + " -> " + bf.edgeTo[min_index].w + " <br>weight: " + bf.edgeTo[min_index].weight;
     console.log(bf.edgeTo[min_index]);
-
 }
 
 function bellman_ford(){

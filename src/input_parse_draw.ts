@@ -6,22 +6,11 @@
 // 	test = regexp.test(trigger);
 // console.log(test + ""); // will display true
 
-// function test(a:number):string|number {	
-// 	return String(a) + 2; 			// zwraca a + 2
-// }
-
-// console.log(test(2));
-// var fs = require('fs');
-
-// import {deflateRaw} from "zlib";
-
-// import {isNumber} from "util";
-
 declare var document: Document;
 
 let  debug = false;
 if (!debug)
-    console.info = function(a:any) { return; };  // easy disable debug
+    console.info = function(a:any) { return; };  // easy trick, to disable debug
 
 let text_area = document.getElementById('textarea_in');
 let out_debug = document.getElementById('textarea_out');
@@ -29,11 +18,11 @@ let info_success = document.getElementById('array_of_success');
 let info_warning = document.getElementById('array_of_warning');
 let alert_area = document.getElementById('alert_lines');
 
-let weigth_graph:RegExp = new RegExp(/^(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*$/mig);// one line
+let weigth_graph:RegExp = new RegExp(/^(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*[\s]*$/mig);// one line
 let empty_line:RegExp = new RegExp(/^\s*$/mig);
 
-var wg_match:any;
-var wg_numbers:Array<number> = Array();
+var wg_match:any;                           // vertex are passed validation
+var wg_numbers:Array<number> = Array();     //
 
 function wg2nubers():Array<number>
 {
@@ -58,7 +47,8 @@ function colorize_line_numbers() {
         //code here using lines[i] which will give you each line
         if ( weigth_graph.test(lines[i].trim()) ) {
             $("span.tln-line:nth-of-type(" + (i+1) + ")").css("color", "limegreen");
-            console.log(i + ": " + lines[i + 1] + " " + weigth_graph.test(lines[i + 1]));
+            // line bellow is needed to colors works propely :)
+            console.info(i + ": " + lines[i + 1] + " " + weigth_graph.test(lines[i + 1])); //IMPORTANT: don't comment
         } else if ( empty_line.test(lines[i].trim()) ){
             $("span.tln-line:nth-of-type(" + (i+1) + ")").css("color", "gray");
         }else {
@@ -77,7 +67,7 @@ function load_input()
     if (em_l !== null)
         num_of_empty = em_l.length;
 
-    wg_match = weigth_graph[Symbol.match](OriginalString);
+    wg_match = weigth_graph[Symbol.match](OriginalString.trim());
     // wg_numbers =
     wg2nubers();
     console.info( "wg_numbers: " + wg_numbers );
@@ -165,6 +155,8 @@ function draw_graph()
     // console.info(links);
 }
 
+// ---------------------------------------------------------------------------------------------------------------------
+
 function delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
 }
@@ -196,8 +188,76 @@ Array.prototype.equals = function (array) {
     return true;
 }
 
+// this.getModelString = function () {
+//     var modelString = '';
+//
+//     _states.forEach(function (state) {
+//         if (state) {
+//             modelString += 'A' + Object.keys(state.assignment).join();
+//             modelString += 'S' + state.successors.join();
+//         }
+//         modelString += ';';
+//     });
+//
+//     return modelString;
+// };
+
+// function showLinkDialog() {
+//     linkInputElem.value = 'http://rkirsling.github.com/modallogic/?model=' + model.getModelString();
+//
+//     backdrop.classed('inactive', false);
+//     setTimeout(function() { backdrop.classed('in', true); linkDialog.classed('inactive', false); }, 0);
+//     setTimeout(function() { linkDialog.classed('in', true); }, 150);
+// }
+
+//
+// this.loadFromModelString = function (modelString) {
+//     var regex = /^(?:;|(?:A|A(?:\w+,)*\w+)(?:S|S(?:\d+,)*\d+);)+$/;
+//     if (!regex.test(modelString)) return;
+//
+//     _states = [];
+//
+//     var self = this,
+//         successorLists = [],
+//         inputStates = modelString.split(';').slice(0, -1);
+//
+//     // restore states
+//     inputStates.forEach(function (state) {
+//         if (!state) {
+//             _states.push(null);
+//             successorLists.push(null);
+//             return;
+//         }
+//
+//         var stateProperties = state.match(/A(.*)S(.*)/).slice(1, 3)
+//             .map(function (substr) { return (substr ? substr.split(',') : []); });
+//
+//         var assignment = {};
+//         stateProperties[0].forEach(function (propvar) { assignment[propvar] = true; });
+//         _states.push({assignment: assignment, successors: []});
+//
+//         var successors = stateProperties[1].map(function (succState) { return +succState; });
+//         successorLists.push(successors);
+//     });
+//
+//     // restore transitions
+//     successorLists.forEach(function (successors, source) {
+//         if (!successors) return;
+//
+//         successors.forEach(function (target) {
+//             self.addTransition(source, target);
+//         });
+//     });
+// };
+
+
+// let weigth_graph = new RegExp(/^(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*$/mig);// one line
+// let empty_line = new RegExp(/^\s*$/mig);
+// ---------------------------------------------------------------------------------------------------------------------
+
 var can_display:number;
 var last_wg=Array();
+
 async function parse_draw( wait:number = 0) {
 
     colorize_line_numbers();
@@ -220,9 +280,6 @@ async function parse_draw( wait:number = 0) {
     bellman_ford();
     force = switchGravity(true);
     road = find_road(way);
-    console.warn(road);
-    console.warn("tutaj");
-    find_road1(way);
 
     restart()
     // update_road();
@@ -235,108 +292,6 @@ parse_draw();
 document.getElementById("textarea_in").addEventListener("input", function () {
     parse_draw(300);
 }, false);
-
-
-this.getModelString = function () {
-    var modelString = '';
-
-    _states.forEach(function (state) {
-        if (state) {
-            modelString += 'A' + Object.keys(state.assignment).join();
-            modelString += 'S' + state.successors.join();
-        }
-        modelString += ';';
-    });
-
-    return modelString;
-};
-
-function showLinkDialog() {
-    linkInputElem.value = 'http://rkirsling.github.com/modallogic/?model=' + model.getModelString();
-
-    backdrop.classed('inactive', false);
-    setTimeout(function() { backdrop.classed('in', true); linkDialog.classed('inactive', false); }, 0);
-    setTimeout(function() { linkDialog.classed('in', true); }, 150);
-}
-
-
-this.loadFromModelString = function (modelString) {
-    var regex = /^(?:;|(?:A|A(?:\w+,)*\w+)(?:S|S(?:\d+,)*\d+);)+$/;
-    if (!regex.test(modelString)) return;
-
-    _states = [];
-
-    var self = this,
-        successorLists = [],
-        inputStates = modelString.split(';').slice(0, -1);
-
-    // restore states
-    inputStates.forEach(function (state) {
-        if (!state) {
-            _states.push(null);
-            successorLists.push(null);
-            return;
-        }
-
-        var stateProperties = state.match(/A(.*)S(.*)/).slice(1, 3)
-            .map(function (substr) { return (substr ? substr.split(',') : []); });
-
-        var assignment = {};
-        stateProperties[0].forEach(function (propvar) { assignment[propvar] = true; });
-        _states.push({assignment: assignment, successors: []});
-
-        var successors = stateProperties[1].map(function (succState) { return +succState; });
-        successorLists.push(successors);
-    });
-
-    // restore transitions
-    successorLists.forEach(function (successors, source) {
-        if (!successors) return;
-
-        successors.forEach(function (target) {
-            self.addTransition(source, target);
-        });
-    });
-};
-
-
-// $('.class-example').highlightWithinTextarea({
-//     highlight: [
-//         {
-//             highlight: 'strawberry',
-//             className: 'red'
-//         },
-//         {
-//             highlight: 'blueberry',
-//             className: 'blue'
-//         },
-//         {
-//             highlight: /ba(na)*/gi,
-//             className: 'yellow'
-//         }
-//     ]
-// });
-
-// let weigth_graph = new RegExp(/^(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*$/mig);// one line
-// let empty_line = new RegExp(/^\s*$/mig);
-
-
-// $('#textarea_in').highlightWithinTextarea({
-//     highlight: [
-//         {
-//             highlight: /^(\\d+\\s+\\d+\\s+(?:(?:\\d+\\.\\d+)|\\d+))(?:\\.[\\S\\d]+)*$/mig,
-//             className: 'yellow'
-//         },
-//         {
-//             highlight: 'blueberry',
-//             className: 'blue'
-//         },
-//         {
-//             highlight: /ba(na)*/gi,
-//             className: 'yellow'
-//         }
-//     ]
-// });
 
 
 

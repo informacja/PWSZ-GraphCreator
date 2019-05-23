@@ -14,7 +14,7 @@ let out_debug = document.getElementById('textarea_out');
 let info_success = document.getElementById('array_of_success');
 let info_warning = document.getElementById('array_of_warning');
 let alert_area = document.getElementById('alert_lines');
-let weigth_graph = new RegExp(/^(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*$/mig);
+let weigth_graph = new RegExp(/^(\d+\s+\d+\s+(?:(?:\d+\.\d+)|\d+))(?:\.[\S\d]+)*[\s]*$/mig);
 let empty_line = new RegExp(/^\s*$/mig);
 var wg_match;
 var wg_numbers = Array();
@@ -36,7 +36,7 @@ function colorize_line_numbers() {
     for (var i = 0; i < lines.length; i++) {
         if (weigth_graph.test(lines[i].trim())) {
             $("span.tln-line:nth-of-type(" + (i + 1) + ")").css("color", "limegreen");
-            console.log(i + ": " + lines[i + 1] + " " + weigth_graph.test(lines[i + 1]));
+            console.info(i + ": " + lines[i + 1] + " " + weigth_graph.test(lines[i + 1]));
         }
         else if (empty_line.test(lines[i].trim())) {
             $("span.tln-line:nth-of-type(" + (i + 1) + ")").css("color", "gray");
@@ -52,7 +52,7 @@ function load_input() {
     let num_of_empty = 0;
     if (em_l !== null)
         num_of_empty = em_l.length;
-    wg_match = weigth_graph[Symbol.match](OriginalString);
+    wg_match = weigth_graph[Symbol.match](OriginalString.trim());
     wg2nubers();
     console.info("wg_numbers: " + wg_numbers);
     let count_of_match = 0;
@@ -150,7 +150,8 @@ function parse_draw(wait = 0) {
         last_wg = wg_numbers;
         draw_graph();
         bellman_ford();
-        find_road(way);
+        force = switchGravity(true);
+        road = find_road(way);
         restart();
     });
 }
@@ -158,51 +159,6 @@ parse_draw();
 document.getElementById("textarea_in").addEventListener("input", function () {
     parse_draw(300);
 }, false);
-this.getModelString = function () {
-    var modelString = '';
-    _states.forEach(function (state) {
-        if (state) {
-            modelString += 'A' + Object.keys(state.assignment).join();
-            modelString += 'S' + state.successors.join();
-        }
-        modelString += ';';
-    });
-    return modelString;
-};
-function showLinkDialog() {
-    linkInputElem.value = 'http://rkirsling.github.com/modallogic/?model=' + model.getModelString();
-    backdrop.classed('inactive', false);
-    setTimeout(function () { backdrop.classed('in', true); linkDialog.classed('inactive', false); }, 0);
-    setTimeout(function () { linkDialog.classed('in', true); }, 150);
-}
-this.loadFromModelString = function (modelString) {
-    var regex = /^(?:;|(?:A|A(?:\w+,)*\w+)(?:S|S(?:\d+,)*\d+);)+$/;
-    if (!regex.test(modelString))
-        return;
-    _states = [];
-    var self = this, successorLists = [], inputStates = modelString.split(';').slice(0, -1);
-    inputStates.forEach(function (state) {
-        if (!state) {
-            _states.push(null);
-            successorLists.push(null);
-            return;
-        }
-        var stateProperties = state.match(/A(.*)S(.*)/).slice(1, 3)
-            .map(function (substr) { return (substr ? substr.split(',') : []); });
-        var assignment = {};
-        stateProperties[0].forEach(function (propvar) { assignment[propvar] = true; });
-        _states.push({ assignment: assignment, successors: [] });
-        var successors = stateProperties[1].map(function (succState) { return +succState; });
-        successorLists.push(successors);
-    });
-    successorLists.forEach(function (successors, source) {
-        if (!successors)
-            return;
-        successors.forEach(function (target) {
-            self.addTransition(source, target);
-        });
-    });
-};
 var g, bf, way;
 way = Array();
 function add_edges() {
@@ -223,23 +179,20 @@ function main_algorithm() {
     for (var v = 1; v < g.V; ++v) {
         if (bf.hasPathTo(v)) {
             var pathT = bf.pathTo(v);
-            console.log('=====path from 0 to ' + v + ' start==========');
             if (true && v == (g.V - 1)) {
                 out_debug.innerHTML += "Najlepsza droga (min):<br> ";
             }
             for (var i = 0; i < pathT.length; ++i) {
                 var e = pathT[i];
-                console.log(e.from() + ' => ' + e.to() + ': ' + e.weight);
                 if (v == (g.V - 1)) {
                     out_debug.innerHTML += e.from() + ' -> ' + e.to() + ': ' + e.weight + "<br>";
                     way.push(e.from(), e.to());
+                    console.log(e.from() + ' => ' + e.to() + ': ' + e.weight);
                 }
             }
             if (true && v == (g.V - 1)) {
                 out_debug.innerHTML += "Koszt: " + Number(bf.distanceTo(v));
             }
-            console.log('=====path from 0 to ' + v + ' end==========');
-            console.log('=====distance: ' + bf.distanceTo(v) + '=========');
         }
     }
 }
@@ -261,11 +214,17 @@ function bellman_ford() {
     main_algorithm();
 }
 function find_road(arr) {
+    var tRoad = Array();
     var n = arr.length;
-    road = [];
-    for (i = 0; i < n; i++) {
-        i++;
+    var m = links.length;
+    for (i = 0; i < m; i++) {
+        for (j = 0; j < n; j += 2) {
+            if (links[i].source.id == arr[j] && links[i].target.id == arr[j + 1]) {
+                tRoad.push(i);
+            }
+        }
     }
-    return road;
+    console.error(tRoad);
+    return tRoad;
 }
 //# sourceMappingURL=input_parse_draw.js.map

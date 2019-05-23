@@ -226,9 +226,23 @@ function tick() {
   circle.attr('transform', (d) => `translate(${d.x},${d.y})`);
 }
 
+function get_class_link(d) {
+  // road = [1,3,4]
+  // console.log(links.indexOf(d) + " == "  );
+  console.log("ble");
+  if (road.indexOf(links.indexOf(d)) !== -1)
+  {
+    // console.warn("indxof:" + road.indexOf(links.indexOf(d)));
+    return 'link road';
+  }
+  else{ return 'link'; }
+
+}
+
 // update graph (called when needed)
 function restart() {
   // path (link) group
+  // path.length = 0;
   path = path.data(links);
 
   // update existing links
@@ -237,21 +251,12 @@ function restart() {
     .style('marker-end', (d) => d.right ? 'url(#end-arrow)' : '');
 
   // remove old links
-  // console.warn(road);
   path.exit().remove();
   // add new links
   path = path.enter() //TODO nie jest wykonywaniy po zmianie danycb wejściowycn przy usuwaniau puunktow
     .append('svg:path')
-    .attr('class', (d) => {
-      road = [1,3,4]
-      // console.log(links.indexOf(d) + " == "  );
-      // console.log(road);
-      if (road.indexOf(links.indexOf(d)) !== -1){
-        console.warn(road.indexOf(links.indexOf(d)));
-        return 'link road';
-      }
-      else
-        return 'link';
+    .attr('class', function(d) {
+      return get_class_link(d);
     })
     .classed('selected', (d) => d === selectedLink)
     .style('marker-start', (d) => d.left ? 'url(#start-arrow)' : '')
