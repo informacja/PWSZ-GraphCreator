@@ -229,7 +229,7 @@ function tick() {
 function get_class_link(d) {
   // road = [1,3,4]
   // console.log(links.indexOf(d) + " == "  );
-  console.log("ble");
+  // console.log(road);
   if (road.indexOf(links.indexOf(d)) !== -1)
   {
     // console.warn("indxof:" + road.indexOf(links.indexOf(d)));
@@ -242,9 +242,13 @@ function get_class_link(d) {
 // update graph (called when needed)
 function restart() {
   // path (link) group
-  // path.length = 0;
-  path = path.data(links);
+  path.length = 0;
 
+  // svg.append('svg:g').selectAll('path').remove(); // nie bangla bo usuwa całkowicie
+  path = svg.append('svg:g').selectAll('path'); //  TODO dupikuje graf :)
+  // console.warn(path);
+  path = path.data(links);
+  // console.warn(path);
   // update existing links
   path.classed('selected', (d) => d === selectedLink)
     .style('marker-start', (d) => d.left ? 'url(#start-arrow)' : '')
@@ -255,7 +259,8 @@ function restart() {
   // add new links
   path = path.enter() //TODO nie jest wykonywaniy po zmianie danycb wejściowycn przy usuwaniau puunktow
     .append('svg:path')
-    .attr('class', function(d) {
+    // .attr('class', (d) => (road.indexOf(links.indexOf(d)) !== -1) ? 'link road' : 'link')
+      .attr('class', function(d) {
       return get_class_link(d);
     })
     .classed('selected', (d) => d === selectedLink)
@@ -270,6 +275,16 @@ function restart() {
       restart();
     })
     .merge(path);
+
+   // path = svg.append("svg:g")
+      // .selectAll("line")
+      // .data(force.links())
+      // .enter().append("svg:path")
+      // .attr("class", "link");
+      // .style("stroke-width", function (d) { return Math.sqrt(d.value); })
+      // .style("stroke", function(d){
+        // return color(d.value)
+      // });
 
   // circle (node) group
 
@@ -514,3 +529,6 @@ d3.select(window)
   .on('keydown', keydown)
   .on('keyup', keyup);
 restart();
+
+
+d3.select('#app-main').dispatch('click');
