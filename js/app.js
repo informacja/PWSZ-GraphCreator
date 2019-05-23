@@ -237,16 +237,19 @@ function restart() {
     .style('marker-end', (d) => d.right ? 'url(#end-arrow)' : '');
 
   // remove old links
-
+  // console.warn(road);
   path.exit().remove();
-
   // add new links
-  path = path.enter()
+  path = path.enter() //TODO nie jest wykonywaniy po zmianie danycb wejściowycn przy usuwaniau puunktow
     .append('svg:path')
     .attr('class', (d) => {
-      console.log(d);
-      if (road.indexOf(links.indexOf(d)) !== -1)
+      road = [1,3,4]
+      // console.log(links.indexOf(d) + " == "  );
+      // console.log(road);
+      if (road.indexOf(links.indexOf(d)) !== -1){
+        console.warn(road.indexOf(links.indexOf(d)));
         return 'link road';
+      }
       else
         return 'link';
     })

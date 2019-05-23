@@ -218,7 +218,12 @@ async function parse_draw( wait:number = 0) {
     draw_graph();
     // restart();
     bellman_ford();
-    find_road(way);
+    force = switchGravity(true);
+    road = find_road(way);
+    console.warn(road);
+    console.warn("tutaj");
+    find_road1(way);
+
     restart()
     // update_road();
     // kolorowanie drogi
