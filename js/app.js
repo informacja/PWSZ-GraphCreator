@@ -185,6 +185,7 @@ svg.append('svg:defs').append('svg:marker')
   .attr('d', 'M10,-5L0,0L10,5')
   .attr('fill', '#000');
 
+
 // line displayed when dragging new nodes
 const dragLine = svg.append('svg:path')
   .attr('class', 'link dragline hidden')
@@ -195,6 +196,39 @@ let path = svg.append('svg:g').selectAll('path');
 let circle = svg.append('svg:g').selectAll('g');
 let weight = svg.append('svg:g').selectAll('text');
 
+let a = svg.append("text")
+    .attr("x", (width / 2))
+    .attr("y", (20))
+    .attr("text-anchor", "middle")
+    .style("font-size", "11px")
+    .style("font-family", "monospace")
+    .style('fill', 'darkOrange')
+    .text("grawitacja");
+
+svg.insert("rect","text")
+    .attr("width", function(d){return 40})
+    .attr("height", function(d){return 40})
+    .style("fill", "lightblue");
+
+
+var textNode = node.filter(function(d) {return (!d.image)})
+
+textNode.append("text")
+    .attr("class", "text")
+    .attr("text-anchor", "middle")
+    .attr("dx", 0)
+    .attr("dy", ".35em")
+    .text(function(d) {
+      return d.name;
+    }).call(getBB);
+textNode.insert("rect","text")
+    .attr("width", function(d){return d.bbox.width})
+    .attr("height", function(d){return d.bbox.height})
+    .style("fill", "yellow");
+
+function getBB(selection) {
+  selection.each(function(d){d.bbox = this.getBBox();})
+}
 // update force layout (called automatically each iteration)
 function tick() {
   // draw directed edges with proper padding from node centers
@@ -239,13 +273,30 @@ function get_class_link(d) {
 
 }
 
+function render() {
+  path = svg.selectAll('path').data([shapeCoords])
+  path.attr('d', function (d) {
+    return line(d) + 'Z'
+  })
+      .style('stroke-width', 1)
+      .style('stroke', 'steelblue');
+  path.enter().append('svg:path').attr('d', function (d) {
+    return line(d) + 'Z'
+  })
+      .style('stroke-width', 1)
+      .style('stroke', 'steelblue');
+  path.exit().remove()
+}
+
 // update graph (called when needed)
 function restart() {
   // path (link) group
   path.length = 0;
 
   // svg.append('svg:g').selectAll('path').remove(); // nie bangla bo usuwa całkowicie
-  path = svg.append('svg:g').selectAll('path'); //  TODO dupikuje graf :)
+  // path = svg.append('svg:g').selectAll('path'); //  TODO dupikuje graf :)
+
+
   // console.warn(path);
   path = path.data(links);
   // console.warn(path);
@@ -275,7 +326,7 @@ function restart() {
       restart();
     })
     .merge(path);
-
+  // render();
    // path = svg.append("svg:g")
       // .selectAll("line")
       // .data(force.links())
