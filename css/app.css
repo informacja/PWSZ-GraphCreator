@@ -58,6 +58,11 @@ text {
 text.id {
   text-anchor: middle;
   font-weight: bold;
+  color: #F00 !important;
+
+}
+text.id:first-child{
+  font: 102px sans-serif;
 }
 
 text.weight {

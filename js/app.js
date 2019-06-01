@@ -196,42 +196,45 @@ let path = svg.append('svg:g').selectAll('path');
 let circle = svg.append('svg:g').selectAll('g');
 let weight = svg.append('svg:g').selectAll('text');
 
-let a = svg.append("text")
-    .attr("x", (width / 2))
-    .attr("y", (20))
-    .attr("text-anchor", "middle")
-    .style("font-size", "11px")
-    .style("font-family", "monospace")
-    .style('fill', 'darkOrange')
-    .text("grawitacja");
-
-svg.insert("rect","text")
-    .attr("width", function(d){return 40})
-    .attr("height", function(d){return 40})
-    .style("fill", "lightblue");
-
-
-var textNode = node.filter(function(d) {return (!d.image)})
-
-textNode.append("text")
-    .attr("class", "text")
-    .attr("text-anchor", "middle")
-    .attr("dx", 0)
-    .attr("dy", ".35em")
-    .text(function(d) {
-      return d.name;
-    }).call(getBB);
-textNode.insert("rect","text")
-    .attr("width", function(d){return d.bbox.width})
-    .attr("height", function(d){return d.bbox.height})
-    .style("fill", "yellow");
-
-function getBB(selection) {
-  selection.each(function(d){d.bbox = this.getBBox();})
-}
+// to erase
+// let a = svg.append("text") 
+//     .attr("x", (width / 2))
+//     .attr("y", (20))
+//     .attr("text-anchor", "middle")
+//     .style("font-size", "11px")
+//     .style("font-family", "monospace")
+//     .style('fill', 'darkOrange')
+//     .text("grawitacja");
+//
+// svg.insert("rect","text")
+//     .attr("width", function(d){return 40})
+//     .attr("height", function(d){return 40})
+//     .style("fill", "lightblue");
+//
+//
+// var textNode = node.filter(function(d) {return (!d.image)})
+//
+// textNode.append("text")
+//     .attr("class", "text")
+//     .attr("text-anchor", "middle")
+//     .attr("dx", 0)
+//     .attr("dy", ".35em")
+//     .text(function(d) {
+//       return d.name;
+//     }).call(getBB);
+// textNode.insert("rect","text")
+//     .attr("width", function(d){return d.bbox.width})
+//     .attr("height", function(d){return d.bbox.height})
+//     .style("fill", "yellow");
+//
+// function getBB(selection) {
+//   selection.each(function(d){d.bbox = this.getBBox();})
+// }
 // update force layout (called automatically each iteration)
 function tick() {
+
   // draw directed edges with proper padding from node centers
+  console.log();
   path.attr('d', (d) => {
     const deltaX = d.target.x - d.source.x;
     const deltaY = d.target.y - d.source.y;
@@ -266,31 +269,37 @@ function get_class_link(d) {
   // console.log(road);
   if (road.indexOf(links.indexOf(d)) !== -1)
   {
-    // console.warn("indxof:" + road.indexOf(links.indexOf(d)));
+
     return 'link road';
   }
   else{ return 'link'; }
 
 }
 
-function render() {
-  path = svg.selectAll('path').data([shapeCoords])
-  path.attr('d', function (d) {
-    return line(d) + 'Z'
-  })
-      .style('stroke-width', 1)
-      .style('stroke', 'steelblue');
-  path.enter().append('svg:path').attr('d', function (d) {
-    return line(d) + 'Z'
-  })
-      .style('stroke-width', 1)
-      .style('stroke', 'steelblue');
-  path.exit().remove()
-}
+// function render() {
+//   path = svg.selectAll('path').data([shapeCoords])
+//   path.attr('d', function (d) {
+//     return line(d) + 'Z'
+//   })
+//       .style('stroke-width', 1)
+//       .style('stroke', 'steelblue');
+//   path.enter().append('svg:path').attr('d', function (d) {
+//     return line(d) + 'Z'
+//   })
+//       .style('stroke-width', 1)
+//       .style('stroke', 'steelblue');
+//   path.exit().remove()
+// }
 
 // update graph (called when needed)
 function restart() {
-  // path (link) group
+  //refresh road and weight if path its not empty
+  if(path["_groups"][0].length > 0)
+  {
+    path.remove();
+    path = path.data(path).enter().append('svg:path').attr('class', function(d) {return get_class_link(d)}).exit().remove();
+  }
+
   path.length = 0;
 
   // svg.append('svg:g').selectAll('path').remove(); // nie bangla bo usuwa całkowicie
@@ -299,7 +308,7 @@ function restart() {
 
   // console.warn(path);
   path = path.data(links);
-  // console.warn(path);
+
   // update existing links
   path.classed('selected', (d) => d === selectedLink)
     .style('marker-start', (d) => d.left ? 'url(#start-arrow)' : '')
@@ -310,7 +319,6 @@ function restart() {
   // add new links
   path = path.enter() //TODO nie jest wykonywaniy po zmianie danycb wejściowycn przy usuwaniau puunktow
     .append('svg:path')
-    // .attr('class', (d) => (road.indexOf(links.indexOf(d)) !== -1) ? 'link road' : 'link')
       .attr('class', function(d) {
       return get_class_link(d);
     })
@@ -326,7 +334,7 @@ function restart() {
       restart();
     })
     .merge(path);
-  // render();
+
    // path = svg.append("svg:g")
       // .selectAll("line")
       // .data(force.links())
@@ -441,6 +449,29 @@ function restart() {
     .text((d) => d.id);
 
   circle = g.merge(circle);
+    // update weight display
+  if(weight["_groups"][0].length > 0)
+  {
+    weight.remove();
+    weight = weight.data(links).enter().enter()
+    .append('svg:text')
+    .attr('class', 'weight')
+    .attr('x', (d) => {
+      var x = weightXY(d.source.x, d.source.y, d.target.x, d.target.y).x;
+      return x;
+    })
+    .attr('y', (d) => {
+      var y = weightXY(d.source.x, d.source.y, d.target.x, d.target.y).y;
+      return y;
+    })
+    .text((d) => {
+      if (d.weight === undefined) {
+        d.weight = "?";
+      }
+      return d.weight;
+    })
+    .merge(weight).exit();
+  }
 
   // start weight display
   weight = weight.data(links);
