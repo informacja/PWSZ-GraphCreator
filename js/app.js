@@ -98,6 +98,15 @@ var nodes = [
   //   y: 314
   // }
 
+// {id: 0, reflexive: true, index: 0, x: 558.4707862842586, y: 367.50716557566096},
+// {id: 1, reflexive: true, index: 1, x: 563.2124458468292, y: 143.91643240635614},
+// {id: 2, reflexive: true, index: 2, x: 508.2490077015699, y: 260.11369822665824},
+// {id: 3, reflexive: true, index: 3, x: 402.8606447764752, y: 258.2458273046466 },
+// {id: 4, reflexive: true, index: 4, x: 652.1386969379388, y: 428.44456845794275},
+// {id: 5, reflexive: true, index: 5, x: 714.2535862472029, y: 262.23901972921607},
+// {id: 6, reflexive: true, index: 6, x: 463.49686435360064,y: 429.83869753142073},
+// {id: 7, reflexive: true, index: 7, x: 612.726376673452,  y: 259.2764187018464 }
+
 ];
 
 // count nodes
