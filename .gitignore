@@ -223,4 +223,4 @@ img/app.png
 .idea/*
 
 .idea/workspace.xml
-node_modules/*
+node_modules/
