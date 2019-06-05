@@ -1,0 +1,30 @@
+{
+	"compileOnSave": true,
+	"compilerOptions": {
+		"lib": [ "es6", "es2018.regexp", "dom", "es2018" ],
+		"allowJs":true,
+//		"module": "commonjs",
+		"target":"ES6",
+		"outFile": "src/input_parse_draw.js",
+		"noImplicitAny" : true,
+//		"declarationDir" : "src/",
+	"sourceMap": true,
+    "removeComments": true
+	},
+	"files": [
+		"src/input_parse_draw.ts",
+		"src/bellman-ford.ts",
+		"js/app.d.ts",
+		"src/jsgraphs.d.ts"
+	],
+
+	"include": [
+//		"src/**/*",
+		"typings/**/*",
+		"js/find_road.js"
+	],
+	"exclude": [
+		"node_modules",
+		"**/*.spec.ts"
+	]
+}
