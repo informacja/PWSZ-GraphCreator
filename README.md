@@ -1,23 +1,19 @@
 # <a href="https://informacja.github.io/PWSZ-GraphCreator/">PWSZ-GraphCreator</a>
 
-<img style="display: inlinie;" src="/img/new.png"> </img>
+<img style="display: inlinie;" src="/img/3way.png"> </img>
 
-index.html
-<img style="display: inlinie;" src="/img/mdb.png"> </img>
+<img style="display: inlinie;" src="/img/intro.gif"> </img>
 
+<img style="display: inlinie;" src="/img/erase.gif"> </img>
+
+##@ Szablon graficzny
 https://github.com/mdbootstrap/Admin-Dashboard-Template-Bootstrap.git
 
-# Zmiany w ścieżkach
-lib -> js
+## Istotne pliki projektu
+> <i>/js/app.js</i> (obsługa biblioteki 3d.js)<br>
 
-# Pliki projektu
+> <i>/src/*.ts</i>  (parsowanie danych wejściowych i algorytm najkrótszej drogi)
 
-js/app.js 
-src/input_parse_draw.js
-
-#How to use
--------
-- Use left mause button to create new node
-- Click node and move mause pointer to next node to link them
-- Use key "R" to change direction of link
-- Use key "Delete" to remove selected node or link
+####
+Wymagania: wierzchołki o indeksach od <b>0</b> do <b>n</b> muszą być ciągłe, nie można żadnego pominąć
+ 

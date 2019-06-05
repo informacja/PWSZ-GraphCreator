@@ -180,7 +180,7 @@ function main_algorithm() {
         if (bf.hasPathTo(v)) {
             var pathT = bf.pathTo(v);
             if (true && v == (g.V - 1)) {
-                out_debug.innerHTML += "Najlepsza droga (min):<br> ";
+                out_debug.innerHTML += "Najlepsza droga <span >(min)</span>:<br> ";
             }
             for (var i = 0; i < pathT.length; ++i) {
                 var e = pathT[i];
