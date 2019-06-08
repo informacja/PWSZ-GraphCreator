@@ -282,6 +282,12 @@ async function parse_draw( wait:number = 0) {
     road = find_road(way);
 
     restart()
+
+    d3.select('#app-main').dispatch('click');
+    var n = document.getElementsByClassName("node");
+    n[0].setPointerCapture(1);
+    console.warn(n[0]);
+
     // update_road();
     // kolorowanie drogi
     // d3.select('#app-main').dispatch('click');
