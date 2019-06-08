@@ -284,7 +284,13 @@ async function parse_draw( wait:number = 0) {
     restart()
     // update_road();
     // kolorowanie drogi
-    // d3.select('#app-main').dispatch('click');
+
+    d3.select('#app-main').dispatch('click');
+    var n = document.getElementsByClassName("node");
+    n[0].setPointerCapture(1);
+    console.warn(n[0]);
+    // n[0].dispatch('click');
+    // circle.class node
 }
 
 parse_draw();
