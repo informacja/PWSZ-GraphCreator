@@ -3,7 +3,7 @@
 <img style="display: inlinie;" src="/img/3way.png"> </img>
 
 ## Wprowadzanie danych od podstaw
-<img style="display: inlinie;" src="/img/input.png"> </img>
+<img style="display: inlinie;" src="/img/input.gif"> </img>
 
 <img style="display: inlinie;" src="/img/intro.gif"> </img>
 
