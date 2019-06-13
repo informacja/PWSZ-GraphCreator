@@ -4,11 +4,10 @@
 
 ## Wprowadzanie danych od podstaw
 <img style="display: inlinie;" src="/img/input.gif"> </img>
-
+## Rozwikłanie grafu
 <img style="display: inlinie;" src="/img/intro.gif"> </img>
-
+## Wydłużenie drogi minimalnej
 <img style="display: inlinie;" src="/img/erase.gif"> </img>
-
 
 ## Wymagania 
 Algorytm działa poprawnie jeśli: 
